@@ -1,22 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    // const clusterName = process.env.REACT_APP_CLUSTER_NAME || 'NoClusterName';
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+import Menu from './components/Menu';
+import Homepage from './components/Homepage';
+import Portfolio from './components/Portfolio';
+import Contact from './components/Contact';
+import About from './components/About';
+import NotFound from './components/NotFound';
+
+import './css/resume.css';
+import './css/style.css';
+
+const App = () => (
+      <BrowserRouter>
+        <div className="App" id="page-top">
+          <div className="container-fluid p-0">
+            <Switch>
+              <Route exact path="/" component={Homepage} />
+              <Route exact path="/portfolio" render={() => <Portfolio />}/>
+              <Route exact path="/about" render={() => <About />}/>
+              <Route exact path="/contact" render={() => <Contact />}/>
+              <Route component={ NotFound }/>
+            </Switch>
+          </div>
+          <Menu/>
+        </div>
+      </BrowserRouter>
+
+)
 
 export default App;
