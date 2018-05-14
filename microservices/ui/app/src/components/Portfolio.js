@@ -14,24 +14,22 @@ class Portfolio extends Component {
   }
 
   componentDidMount(){
-
-      const GraphQLEndPoint = 'https://data.deterioration37.hasura-app.io/v1/query';
-
-      axios.post(GraphQLEndPoint, {
-        'query': {
-              "type": "select",
-              "args": {
-                  "table": "category",
-                  "columns": [
-                      "title"
-                  ]
-              }
-        },
-        'Content-Type': 'application/json',
-        'Authorization': process.env.REACT_APP_HASURA_ACCESS_TOKEN,
-        'X-Hasura-Role': 'admin',
+      const EndPoint = `https://data.deterioration37.hasura-app.io/v1/query`;
+      axios.post(EndPoint, {
+          "headers": {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer 9cec1b3d25d97a3ff2ba35c83449babefa87eac9b9ebc2fe",
+            'X-Hasura-Role': 'admin',
+          },
+          'type': 'select',
+          'args': {
+            "table": "category",
+            "columns": [
+                "title"
+            ]
+          }
       }).then((data) => {
-           console.log(data);
+           console.log(data.data);
          })
          .catch(function (error) {
             console.log(error);
