@@ -7,7 +7,7 @@ const PortfolioItem = props => {
 
   if (props.portfolioItems.length > 0) {
     item = props.portfolioItems.map(e =>
-                <div key={e.id} className="card p-3 col-12 col-md-6 col-lg-4">
+                <div key={e.id} className="card p-3 col-12 col-md-4 col-lg-3 portfolio-item">
                     <div className="card-wrapper">
                         <div className="card-img">
                             <a href="articles.html">

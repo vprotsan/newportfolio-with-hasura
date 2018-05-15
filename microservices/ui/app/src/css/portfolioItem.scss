@@ -3,7 +3,17 @@
   h2 {
     text-align: right;
   }
-  
+
+  .btn-group-vertical>.btn,
+  .btn-group>.btn {
+    float: right;
+    margin-top: 1rem;
+  }
+
+  .portfolio-item {
+    background: #ffffff;
+  }
+
   img {
     width: 100%;
   }

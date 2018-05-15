@@ -2,5 +2,11 @@
   margin: 0; }
   #experience h2 {
     text-align: right; }
+  #experience .btn-group-vertical > .btn,
+  #experience .btn-group > .btn {
+    float: right;
+    margin-top: 1rem; }
+  #experience .portfolio-item {
+    background: #ffffff; }
   #experience img {
     width: 100%; }

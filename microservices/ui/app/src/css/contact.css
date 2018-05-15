@@ -1,76 +1,679 @@
 @font-face {
-    font-family: 'si';
-    src: url('../icons/socicon.eot');
-    src: url('../icons/socicon.eot?#iefix') format('embedded-opentype'),
-         url('../icons/socicon.woff') format('woff'),
-         url('../icons/socicon.ttf') format('truetype'),
-         url('../icons/socicon.svg#icomoonregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'si';
+  src: url("../icons/socicon.eot");
+  src: url("../icons/socicon.eot?#iefix") format("embedded-opentype"), url("../icons/socicon.woff") format("woff"), url("../icons/socicon.ttf") format("truetype"), url("../icons/socicon.svg#icomoonregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 
-}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: si;
+    src: url(../icons/socicon.svg) format(svg); } }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    @font-face {
-        font-family:si;
-        src: url(../icons/socicon.svg) format(svg);
-    }
-}
+#contact {
+  margin-top: 0; }
+  #contact h1 {
+    font-size: 3rem;
+    text-align: center; }
 
 .soc {
-    overflow:hidden;
-    margin:0; padding:0;
-    list-style:none;
-}
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center; }
 
 .soc li {
-    display:inline-block;
-    *display:inline;
-    zoom:1;
-}
+  display: inline-block;
+  *display: inline;
+  zoom: 1; }
 
 .soc li a {
-    font-family:si!important;
-    font-style:normal;
-    font-weight:400;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;
-    overflow:hidden;
-    text-decoration:none;
-    text-align:center;
-    display:block;
-    position: relative;
-    z-index: 1;
-    width: 75px;
-    height: 75px;
-    line-height: 75px;
-    font-size: 41px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    border-radius: 100px;
-    margin-right: 27px;
-    color: #ffffff;
-    background-color: #5bb3ce;
-}
+  font-family: si !important;
+  font-style: normal;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  font-size: 41px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  margin-right: 27px;
+  color: #ffffff;
+  background-color: #5bb3ce;
+  transition: all 0.2s linear; }
+  .soc li a:hover {
+    background-color: #399ebd; }
 
-.soc-icon-last{
-    margin:0 !important;
-}
+.soc-icon-last {
+  margin: 0 !important; }
 
 .soc-linkedin:before {
-    content:'\e049';
-}
+  content: '\e049'; }
+
 .soc-github:before {
-    content:'\e030';
-}
+  content: '\e030'; }
+
 .soc-twitter:before {
-    content:'\e040';
-}
+  content: '\e040'; }
+
 .soc-mail:before {
-    content:'\e01f';
-}
+  content: '\e01f'; }
+
+#panda-animation {
+  width: auto; }
+
+.container-for-animation {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  /*border: 6px solid $green;*/
+  background: #ede6bc;
+  z-index: 999;
+  overflow: hidden;
+  box-sizing: border-box;
+  transform: scale(0.8); }
+  @media screen and (min-width: 360px) {
+    .container-for-animation {
+      width: 340px;
+      height: 340px;
+      margin: 1.5em auto;
+      transform: scale(1); } }
+  @media screen and (min-width: 480px) {
+    .container-for-animation {
+      width: 400px;
+      height: 400px; } }
+  .container-for-animation:before {
+    position: absolute;
+    content: '';
+    width: 500px;
+    height: 80px;
+    border-radius: 50%;
+    background: #e7b167;
+    bottom: 0;
+    z-index: -998;
+    border-top-color: #ba8340;
+    border-top-width: 10px;
+    border-top-style: solid; }
+
+/*end .container-for-animation*/
+.panda-container {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  top: 40px;
+  left: 80px; }
+
+.earleft,
+.earright {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #000;
+  z-index: -2;
+  transform-origin: -65px 135px; }
+
+.earleft {
+  top: 28px;
+  left: 82px;
+  animation: ears-left 7s linear infinite; }
+
+.earright {
+  top: 30px;
+  right: 85px;
+  animation: ears-left 7s linear infinite; }
+
+.head {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  width: 150px;
+  height: 120px;
+  border-radius: 120px 120px 100px 108px / 116px 120px 86px 84px;
+  z-index: 100;
+  /*transform-origin: bottom center;
+            transform: rotate(5deg);*/
+  animation: head-tilt 7s linear infinite;
+  background: #ffffff;
+  /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #ffffff 42%, #ffffff 42%, #e5e5e5 100%);
+  /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #ffffff 42%, #ffffff 42%, #e5e5e5 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #ffffff 0%, #ffffff 42%, #ffffff 42%, #e5e5e5 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  /*morda end*/
+  /*eye end*/ }
+  .head .morda {
+    position: absolute;
+    top: 60px;
+    left: 35px;
+    content: '';
+    width: 80px;
+    height: 60px;
+    border-radius: 100% 100% 100% 100% / 100% 100% 95% 93%;
+    background: #f7f7f7;
+    /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #f7f7f7 38%, #cecece 100%);
+    /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #f7f7f7 38%, #cecece 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #f7f7f7 38%, #cecece 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#cecece',GradientType=1 );
+    /* IE6-9 fallback on horizontal gradient */ }
+    .head .morda:before, .head .morda:after {
+      position: absolute;
+      content: '';
+      border-radius: 100% 100% 100% 100%; }
+    .head .morda:before {
+      width: 38px;
+      height: 20px;
+      background: #000;
+      left: 20px;
+      top: 8px; }
+    .head .morda:after {
+      width: 12px;
+      height: 4px;
+      background: #fff;
+      left: 32px;
+      top: 12px; }
+    .head .morda .smile,
+    .head .morda .smile2 {
+      position: absolute;
+      top: 10px;
+      border: 2px solid #000;
+      /* the 'strokes' of the arc */
+      width: 30px;
+      /* the width of the innermost element */
+      height: 30px;
+      /* the height of the innermost element */
+      border-radius: 50%;
+      /* for making the elements 'round' */
+      border-top-color: transparent;
+      /* hiding the top border */
+      border-bottom-color: transparent;
+      transform: rotate(45deg); }
+    .head .morda .smile {
+      left: 10px;
+      border-left-color: transparent;
+      /* hiding the top border */
+      animation: smile-right 7s ease-in-out infinite; }
+    .head .morda .smile2 {
+      right: 10px;
+      border-left-color: transparent;
+      /* hiding the top border */
+      transform: rotate(135deg);
+      animation: smile-left 7s ease-in-out infinite; }
+  .head .eye {
+    position: absolute;
+    width: 33px;
+    height: 45px;
+    border-radius: 95% 95% 100% 100% / 99% 99% 90% 90%;
+    background: #000;
+    top: 30px;
+    transform-origin: bottom center;
+    z-index: -1; }
+    .head .eye div {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #3a9481;
+      border-radius: 50%;
+      z-index: 99; }
+    .head .eye div:before {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 14px;
+      height: 14px;
+      background: #000;
+      z-index: 100;
+      border-radius: 50%; }
+    .head .eye div:after {
+      position: absolute;
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      z-index: 9999; }
+  .head .left div {
+    top: 14px;
+    left: 10px; }
+  .head .right div {
+    top: 15px;
+    left: 4px; }
+  .head .left div:before {
+    top: 2px;
+    left: 2px; }
+  .head .right div:before {
+    top: 2px;
+    right: 2px; }
+  .head .right div:after {
+    top: 5px;
+    right: 0; }
+  .head .left div:after {
+    top: 0px;
+    right: 5px; }
+  .head .left {
+    left: 17px;
+    transform: rotate(30deg); }
+  .head .right {
+    right: 17px;
+    transform: rotate(-35deg); }
+  .head .left:before,
+  .head .right:before {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    top: 12px;
+    z-index: 90;
+    border-radius: 50%; }
+  .head .left:before {
+    left: 7px; }
+  .head .right:before {
+    right: 7px; }
+
+/*end head*/
+.body {
+  position: absolute;
+  box-sizing: border-box;
+  bottom: 30px;
+  left: 95px;
+  width: 160px;
+  height: 186px;
+  border-radius: 100% 100% 95% 95% / 100% 100% 100% 100%;
+  border-top-color: #141414;
+  border-top-style: solid;
+  border-top-width: 65px;
+  transform: rotate(3deg);
+  transform-origin: top center;
+  background: #ffffff;
+  /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #ffffff 21%, #dbdbdb 95%);
+  /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 21%, #dbdbdb 95%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #ffffff 21%, #dbdbdb 95%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */ }
+
+.legleft,
+.legright {
+  position: absolute;
+  bottom: -30px;
+  width: 70px;
+  height: 45px;
+  background: black;
+  border-radius: 96% 96% 97% 97% / 96% 96% 90% 90%;
+  z-index: -1;
+  background: black;
+  border-bottom-color: #ba8340;
+  border-bottom-style: solid;
+  border-bottom-width: 5px; }
+
+.legleft {
+  left: 70px; }
+
+.legright {
+  right: 70px;
+  transform: rotate(-10deg);
+  transform-origin: center center;
+  bottom: -30px; }
+
+.legleft:after, .legright:after {
+  position: absolute;
+  content: '';
+  width: 60px;
+  height: 90px;
+  background: black;
+  z-index: -99;
+  top: -55px;
+  border-radius: 58% 30% 87% 92% / 96% 94% 89% 99%; }
+
+.legleft:after {
+  right: -20px;
+  transform: rotate(15deg);
+  transform-origin: center top; }
+
+.legright:after {
+  left: -15px;
+  transform: rotate(-10deg);
+  transform-origin: center top;
+  z-index: -100; }
+
+.armleft,
+.armright {
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  background: black;
+  top: 150px;
+  z-index: -5; }
+
+.armright {
+  right: 50px;
+  top: 170px;
+  border-radius: 50%;
+  transform: rotate(20deg);
+  transform-origin: center center; }
+
+.armleft {
+  left: 55px;
+  border-radius: 37% 79% 46% 68% / 44% 38% 47% 70%;
+  animation: handmotion 10s linear infinite; }
+
+.armleft:after {
+  position: absolute;
+  content: '';
+  width: 60px;
+  height: 60px;
+  left: -30px;
+  top: -17px;
+  border-radius: 50%;
+  background: black; }
+
+.armright:after {
+  position: absolute;
+  content: '';
+  width: 60px;
+  height: 55px;
+  right: -13px;
+  bottom: 8px;
+  border-radius: 50%;
+  background: black;
+  transform: rotate(-15deg);
+  animation: right-arm 2s linear infinite;
+  -webkit-box-shadow: inset 2px 2px 25px 0px #616161;
+  -moz-box-shadow: inset 2px 2px 25px 0px #616161;
+  box-shadow: inset 2px 2px 25px 0px #616161; }
+
+.armleft:before {
+  position: absolute;
+  content: '';
+  width: 35px;
+  height: 30px;
+  left: -20px;
+  top: -3px;
+  border-radius: 100% 77% 82% 100% / 77% 81% 76% 91%;
+  background: #fff;
+  z-index: 100;
+  transform: rotate(-45deg); }
+
+.fingers {
+  position: absolute;
+  top: -16px;
+  left: -30px;
+  width: 50px;
+  height: 50px;
+  animation: fingers 0.8s linear infinite; }
+  .fingers .one,
+  .fingers .two,
+  .fingers .three,
+  .fingers .four {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background: black;
+    transform-origin: bottom center; }
+  .fingers .one {
+    top: -20px;
+    right: 10px;
+    border-radius: 85% 89% 50% 50% / 69% 62% 25% 25%; }
+  .fingers .two {
+    top: -16px;
+    right: 25px;
+    transform: rotate(-35deg);
+    border-radius: 100% 77% 82% 100% / 77% 81% 76% 91%; }
+  .fingers .three {
+    top: -3px;
+    left: -3px;
+    transform: rotate(-70deg);
+    border-radius: 100% 100% 78% 90% / 77% 95% 67% 70%; }
+  .fingers .four {
+    top: 10px;
+    left: 3px;
+    transform: rotate(-110deg);
+    border-radius: 100% 100% 93% 96% / 100% 98% 83% 95%; }
+  .fingers .one:after,
+  .fingers .two:after,
+  .fingers .three:after,
+  .fingers .four:after {
+    position: absolute;
+    content: '';
+    width: 7px;
+    height: 13px;
+    background: #fff;
+    left: 4px;
+    top: 8px; }
+  .fingers .one:after {
+    border-radius: 85% 89% 74% 100% / 69% 62% 72% 85%; }
+  .fingers .two:after {
+    border-radius: 100% 100% 93% 96% / 100% 98% 83% 95%; }
+  .fingers .three:after {
+    border-radius: 100% 77% 82% 100% / 77% 81% 76% 91%; }
+  .fingers .four:after {
+    border-radius: 85% 89% 50% 50% / 69% 62% 25% 25%; }
+
+/*end fingers*/
+.tree-one,
+.tree-two,
+.bamboo-in-hand {
+  position: absolute;
+  left: 100px;
+  width: 10px;
+  border-radius: 100% 100% 100% 100%;
+  background: #3a9481;
+  z-index: -10;
+  transform-origin: bottom center; }
+
+.tree-one {
+  transform: rotate(-10deg);
+  height: 300px;
+  top: 90px;
+  animation: bamboo-bg 5s linear infinite; }
+
+.tree-two {
+  transform: rotate(-16deg);
+  height: 210px;
+  top: 180px;
+  left: 90px;
+  animation: bamboo-bg 7s linear infinite; }
+
+.bamboo-in-hand {
+  transform-origin: center center;
+  height: 200px;
+  left: 70px;
+  top: -80px;
+  transform: rotate(-10deg);
+  animation: bamboo-in-hand 2s linear infinite;
+  /*end leaves*/ }
+  .bamboo-in-hand .leaves {
+    position: absolute;
+    right: 6px;
+    transform: rotate(-15deg);
+    animation: leaves-in-hand-right 2s linear infinite; }
+    .bamboo-in-hand .leaves:after {
+      position: absolute;
+      content: '';
+      width: 35px;
+      height: 20px;
+      background: #3a9481;
+      border-radius: 10% 100% 0% 100% / 0% 100% 0% 95%;
+      top: 20px;
+      right: -35px;
+      transform: rotate(-35deg);
+      animation: leaves-in-hand-left 3s linear infinite; }
+
+/*end bamboo-in-hand*/
+.tree-one:before,
+.tree-two:before {
+  position: absolute;
+  content: '';
+  width: 6px;
+  height: 15px;
+  top: 20px;
+  background: #3a9481; }
+
+.tree-one:before {
+  left: 8px;
+  transform: rotate(70deg); }
+
+.tree-two:before {
+  left: -8px;
+  transform: rotate(-70deg); }
+
+.leaves {
+  width: 35px;
+  height: 20px;
+  background: #3a9481;
+  border-radius: 10% 100% 0% 100% / 0% 100% 0% 95%; }
+
+.tree-one .leaves {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transform-origin: left center;
+  transform: rotate(-45deg);
+  animation: leaves-left 2s linear infinite; }
+
+.tree-two .leaves {
+  position: absolute;
+  top: 9px;
+  left: -45px; }
+
+.tree-one .leaves:before {
+  animation: leaves-left-before 2s linear infinite; }
+
+.tree-one .leaves:before, .tree-two .leaves:before {
+  position: absolute;
+  content: '';
+  width: 35px;
+  height: 20px;
+  top: 18px;
+  transform: rotate(35deg);
+  background: #3a9481;
+  border-radius: 10% 100% 0% 100% / 0% 100% 0% 95%; }
+
+.tree-two .leaves:before {
+  top: -18px; }
+
+@keyframes handmotion {
+  0%, 100% {
+    transform: rotate(0deg); }
+  20%, 80% {
+    transform: rotate(30deg); } }
+
+@keyframes fingers {
+  0%, 100% {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(5deg); } }
+
+@keyframes bamboo-bg {
+  0%, 100% {
+    transform: rotate(-10deg); }
+  50% {
+    transform: rotate(-8deg); } }
+
+@keyframes leaves-left {
+  0%, 100% {
+    transform: rotate(-45deg); }
+  50% {
+    transform: rotate(-40deg); } }
+
+@keyframes leaves-left-before {
+  0%, 100% {
+    transform: rotate(35deg); }
+  50% {
+    transform: rotate(25deg); } }
+
+@keyframes head-tilt {
+  0%, 100% {
+    transform: rotate(0deg); }
+  50% {
+    transform-origin: bottom center;
+    transform: rotate(8deg); } }
+
+@keyframes ears-left {
+  0%, 100% {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(8deg); } }
+
+@keyframes ears-right {
+  0%, 100% {
+    top: 26px;
+    right: 85px; }
+  50% {
+    top: 50px;
+    right: 65px; } }
+
+@keyframes smile-left {
+  0%, 100% {
+    transform: rotate(135deg);
+    border-bottom-color: transparent; }
+  50% {
+    border-bottom-color: black;
+    transform: rotate(95deg); } }
+
+@keyframes smile-right {
+  0%, 100% {
+    transform: rotate(45deg);
+    border-top-color: transparent; }
+  50% {
+    border-top-color: black;
+    transform: rotate(85deg); } }
+
+@keyframes right-arm {
+  0%, 100% {
+    right: -13px; }
+  50% {
+    right: -17px; } }
+
+@keyframes bamboo-in-hand {
+  0%, 100% {
+    left: 70px;
+    transform: rotate(-10deg); }
+  50% {
+    left: 80px;
+    transform: rotate(-7deg); } }
+
+@keyframes leaves-in-hand-right {
+  0%, 100% {
+    transform: rotate(-15deg); }
+  50% {
+    transform-origin: right center;
+    transform: rotate(-5deg); } }
+
+@keyframes leaves-in-hand-left {
+  0%, 100% {
+    transform: rotate(-35deg); }
+  50% {
+    transform-origin: left top;
+    transform: rotate(-40deg); } }

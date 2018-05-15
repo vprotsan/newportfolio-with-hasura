@@ -17,7 +17,7 @@ class Portfolio extends Component {
   componentDidMount(){
       var self = this;
       const EndPoint = `https://data.deterioration37.hasura-app.io/v1/query`;
-      const imgEndPoint = `http://filestore.deterioration37.hasura-app.io/v1/hooks/public-read`;
+      // const imgEndPoint = `http://filestore.deterioration37.hasura-app.io/v1/hooks/public-read`;
       //get categories
       axios.post(EndPoint, {
           "headers": {
@@ -77,13 +77,15 @@ class Portfolio extends Component {
     return(
       <section className="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div className="my-auto">
-          <h2 className="mb-5">Experience</h2>
+          <h2 className="mb-5">Projects</h2>
 
-          <div className="btn-group">
-            <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
-              Filter by category <span className="caret"></span>
-            </button>
-            <PortfolioFilterItem categories={this.state.categories}/>
+          <div className="row">
+              <div className="btn-group col-6 col-md-2 col-lg-2 col-lg-offset-10">
+                <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  Filter by category <span className="caret"></span>
+                </button>
+                <PortfolioFilterItem categories={this.state.categories}/>
+              </div>
           </div>
 
           <PortfolioItem portfolioItems={this.state.portfolioItems}/>
