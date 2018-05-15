@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../css/portfolioItem.css';
 
 const PortfolioItem = props => {
 
@@ -7,7 +7,7 @@ const PortfolioItem = props => {
 
   if (props.portfolioItems.length > 0) {
     item = props.portfolioItems.map(e =>
-                <div className="card p-3 col-12 col-md-6 col-lg-4">
+                <div key={e.id} className="card p-3 col-12 col-md-6 col-lg-4">
                     <div className="card-wrapper">
                         <div className="card-img">
                             <a href="articles.html">
@@ -16,6 +16,7 @@ const PortfolioItem = props => {
                         </div>
                         <div className="card-box">
                             <h4 className="card-title mbr-fonts-style mbr-bold display-7">{e.title}</h4>
+                            <p>{e.content}</p>
                         </div>
                         <div className="mbr-section-btn"><a href="articles.html" className="btn btn-warning display-4">Details</a></div>
                     </div>
