@@ -11,9 +11,12 @@
     src: url(../icons/socicon.svg) format(svg); } }
 
 #contact {
-  margin-top: 0; }
+  margin-top: 5rem;
+  margin-bottom: 5rem; }
   #contact h1 {
     font-size: 3rem;
+    text-align: center; }
+  #contact .panda {
     text-align: center; }
 
 .soc {
@@ -45,14 +48,14 @@
   display: block;
   position: relative;
   z-index: 1;
-  width: 75px;
-  height: 75px;
-  line-height: 75px;
-  font-size: 41px;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 31px;
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
-  margin-right: 27px;
+  margin-right: 17px;
   color: #ffffff;
   background-color: #5bb3ce;
   transition: all 0.2s linear; }
@@ -79,21 +82,22 @@
 
 .container-for-animation {
   position: relative;
+  top: -20px;
   width: 300px;
   height: 300px;
   border-radius: 50%;
   /*border: 6px solid $green;*/
-  background: #ede6bc;
+  background: #E1F1F6;
   z-index: 999;
   overflow: hidden;
   box-sizing: border-box;
-  transform: scale(0.8); }
+  transform: scale(0.6); }
   @media screen and (min-width: 360px) {
     .container-for-animation {
       width: 340px;
       height: 340px;
-      margin: 1.5em auto;
-      transform: scale(1); } }
+      margin: 0 auto;
+      transform: scale(0.8); } }
   @media screen and (min-width: 480px) {
     .container-for-animation {
       width: 400px;
@@ -104,10 +108,10 @@
     width: 500px;
     height: 80px;
     border-radius: 50%;
-    background: #e7b167;
+    background: #5BB3CE;
     bottom: 0;
     z-index: -998;
-    border-top-color: #ba8340;
+    border-top-color: #4B93A9;
     border-top-width: 10px;
     border-top-style: solid; }
 
@@ -238,7 +242,7 @@
       position: absolute;
       width: 20px;
       height: 20px;
-      background: #3a9481;
+      background: #089c73;
       border-radius: 50%;
       z-index: 99; }
     .head .eye div:before {
@@ -333,7 +337,7 @@
   border-radius: 96% 96% 97% 97% / 96% 96% 90% 90%;
   z-index: -1;
   background: black;
-  border-bottom-color: #ba8340;
+  border-bottom-color: #4B93A9;
   border-bottom-style: solid;
   border-bottom-width: 5px; }
 
@@ -488,7 +492,7 @@
   left: 100px;
   width: 10px;
   border-radius: 100% 100% 100% 100%;
-  background: #3a9481;
+  background: #089c73;
   z-index: -10;
   transform-origin: bottom center; }
 
@@ -523,7 +527,7 @@
       content: '';
       width: 35px;
       height: 20px;
-      background: #3a9481;
+      background: #089c73;
       border-radius: 10% 100% 0% 100% / 0% 100% 0% 95%;
       top: 20px;
       right: -35px;
@@ -538,7 +542,7 @@
   width: 6px;
   height: 15px;
   top: 20px;
-  background: #3a9481; }
+  background: #089c73; }
 
 .tree-one:before {
   left: 8px;
@@ -551,7 +555,7 @@
 .leaves {
   width: 35px;
   height: 20px;
-  background: #3a9481;
+  background: #089c73;
   border-radius: 10% 100% 0% 100% / 0% 100% 0% 95%; }
 
 .tree-one .leaves {
@@ -577,7 +581,7 @@
   height: 20px;
   top: 18px;
   transform: rotate(35deg);
-  background: #3a9481;
+  background: #089c73;
   border-radius: 10% 100% 0% 100% / 0% 100% 0% 95%; }
 
 .tree-two .leaves:before {

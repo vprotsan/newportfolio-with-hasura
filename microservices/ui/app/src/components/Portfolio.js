@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 import PortfolioItem from './PortfolioItem';
-import PortfolioFilterItem from './PortfolioFilterItem';
+// import PortfolioFilterItem from './PortfolioFilterItem';
 
 class Portfolio extends Component {
 
@@ -10,8 +12,14 @@ class Portfolio extends Component {
       super(props);
       this.state = {
           categories: [],
+          selectedCategory: '',
           portfolioItems: []
       }
+  }
+
+  handleChange = selectedOption => {
+    this.setState({ selectedCategory: selectedOption });
+    console.log(`Selected: ${this.state.selectedCategory.label}`);
   }
 
   componentDidMount(){
@@ -74,18 +82,36 @@ class Portfolio extends Component {
   }
 
   render(){
+
+    // let categories;
+    //
+    // if (this.state.categories.length > 0) {
+    //   categories = this.state.categories.map(cat => ({ value: cat.id,
+    //                                                   label: cat.title
+    //                                                 }));
+    // } else {
+    //   categories = 'No categories';
+    // }
+
+    console.log(this.state.categories);
+    const categories = this.state.categories.map(e => ({value: e.id, label: e.title}))
+
+    const selectedCategory = this.state.selectedCategory;
+
     return(
       <section className="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div className="my-auto">
           <h2 className="mb-5">Projects</h2>
 
           <div className="row">
-              <div className="btn-group col-6 col-md-2 col-lg-2 col-lg-offset-10">
-                <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  Filter by category <span className="caret"></span>
-                </button>
-                <PortfolioFilterItem categories={this.state.categories}/>
-              </div>
+            <div className="btn-group col-6 col-md-2 col-lg-2 col-lg-offset-10">
+                <Select
+                  name="form-field-name"
+                  value={selectedCategory}
+                  onChange={this.handleChange}
+                  options={categories}
+                />
+            </div>
           </div>
 
           <PortfolioItem portfolioItems={this.state.portfolioItems}/>

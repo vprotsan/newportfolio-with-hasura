@@ -3,13 +3,7 @@ import '../css/contact.css';
 
 const Contact = () => (
   <section className="resume-section p-3 p-lg-5 d-flex flex-column col-md-offset-6" id="contact">
-    <h1>Drop me a line! Ask me a question!</h1>
-    <ul className="soc">
-        <li><a className="soc-linkedin" href="https://linkedin.com/in/vprotsan" target="_blank"></a></li>
-        <li><a className="soc-github" href="https://github.com/vprotsan" target="_blank"></a></li>
-        <li><a className="soc-twitter" href="https://twitter.com/Valeria_Protsan" target="_blank"></a></li>
-        <li><a className="soc-mail soc-icon-last" href="mailto:protsan.valeriya@gmail.com" target="_blank"></a></li>
-    </ul>
+    <h1>Drop me a line!  Ask me a question!</h1>
 
     <div className="container" id="panda-animation">
         <div className="container-for-animation">
@@ -53,6 +47,13 @@ const Contact = () => (
           </div>
         </div>
     </div>
+
+    <ul className="soc">
+        <li><a className="soc-linkedin" href="https://linkedin.com/in/vprotsan" target="_blank"></a></li>
+        <li><a className="soc-github" href="https://github.com/vprotsan" target="_blank"></a></li>
+        <li><a className="soc-twitter" href="https://twitter.com/Valeria_Protsan" target="_blank"></a></li>
+        <li><a className="soc-mail soc-icon-last" href="mailto:protsan.valeriya@gmail.com" target="_blank"></a></li>
+    </ul>
   </section>
 )
 
