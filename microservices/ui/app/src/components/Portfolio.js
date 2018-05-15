@@ -86,10 +86,7 @@ class Portfolio extends Component {
             <PortfolioFilterItem categories={this.state.categories}/>
           </div>
 
-          <div className="row row-content justify-content-center">
-            <PortfolioItem portfolioItems={this.state.portfolioItems}/>
-          </div>
-
+          <PortfolioItem portfolioItems={this.state.portfolioItems}/>
         </div>
 
       </section>

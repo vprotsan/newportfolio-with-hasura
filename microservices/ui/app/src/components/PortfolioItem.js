@@ -11,7 +11,7 @@ const PortfolioItem = props => {
                     <div className="card-wrapper">
                         <div className="card-img">
                             <a href="articles.html">
-                              <img src="https://filestore.deterioration37.hasura-app.io/v1/file/" title={e.title} alt={e.title} media-simple="true" />
+                              <img src={`https://filestore.deterioration37.hasura-app.io/v1/file/` + e.file_id} title={e.title} alt={e.title} media-simple="true" />
                             </a>
                         </div>
                         <div className="card-box">
@@ -25,7 +25,7 @@ const PortfolioItem = props => {
     item = 'No items';
   }
 
-  return( {item} );
+  return( <div className="row row-content justify-content-center">{item}</div> );
 }
 
 export default PortfolioItem;
