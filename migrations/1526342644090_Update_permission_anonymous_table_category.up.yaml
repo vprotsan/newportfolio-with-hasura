@@ -1,0 +1,13 @@
+- args:
+    role: anonymous
+    table: category
+  type: drop_select_permission
+- args:
+    permission:
+      columns:
+      - id
+      - title
+      filter: {}
+    role: anonymous
+    table: category
+  type: create_select_permission
