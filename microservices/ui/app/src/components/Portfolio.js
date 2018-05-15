@@ -32,12 +32,8 @@ class Portfolio extends Component {
           categories: [],
           portfolioItems: [],
           modalIsOpen: false,
-          defaultCategory: 'Select Category',
-          selectValue: 'new-south-wales',
-          selectedOption: '',
-    			disabled: false,
-    			clearable: true,
-    			rtl: false,
+
+          selectValue: null
       }
       //modal
       this.openModal = this.openModal.bind(this);
@@ -45,16 +41,9 @@ class Portfolio extends Component {
       this.closeModal = this.closeModal.bind(this);
   }
 
+  //dropdown filter
   clearValue (e) {
 		this.select.setInputValue('');
-	}
-
-  switchCountry = e => {
-		var newCat = e.target.value;
-		this.setState({
-			defaultCategory: newCat,
-			selectValue: null,
-		});
 	}
 
   focusStateSelect = props => {
@@ -63,9 +52,10 @@ class Portfolio extends Component {
 
   updateValue = newValue => {
 		this.setState({
-			selectValue: newValue,
+			selectValue: newValue
 		});
 	}
+  //end dropdown filter
 
   //modal
   openModal() {
@@ -142,8 +132,14 @@ class Portfolio extends Component {
   }
 
   render(){
-    const cat = this.state.categories.map(e => ({value: e.id, label: e.title}))
-    const { selectedOption } = this.state.selectedOption;
+    const cat = this.state.categories.map(e => ({value: e.id, label: e.title}));
+    var pList;
+    if (this.state.selectValue){
+      pList = this.state.portfolioItems.filter( item => item.category_id === this.state.selectValue );
+    } else {
+      pList = this.state.portfolioItems;
+    }
+
 
     return(
       <section className="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
@@ -151,14 +147,7 @@ class Portfolio extends Component {
           <h2 className="mb-5">Projects</h2>
 
           <div className="row">
-            <div className="btn-group col-6 col-md-2 col-lg-2 col-lg-offset-10">
-                {/* <Select
-                  name="form-field-name"
-                  value={selectedOption}
-                  onChange={this.handleChange}
-                  options={cat}
-                /> */}
-
+            <div className="btn-group col-6 col-md-2 col-lg-4 col-lg-offset-8">
                 <Select
         					id="state-select"
         					ref={(ref) => { this.select = ref; }}
@@ -167,17 +156,14 @@ class Portfolio extends Component {
         					autoFocus
         					options={cat}
         					simpleValue
-        					clearable={this.state.clearable}
         					name="selected-state"
-        					disabled={this.state.disabled}
         					value={this.state.selectValue}
         					onChange={this.updateValue}
-        					rtl={this.state.rtl}
         				/>
 
             </div>
           </div>
-          <PortfolioItem onClick={this.openModal} portfolioItems={this.state.portfolioItems}/>
+          <PortfolioItem onClick={this.openModal} portfolioItems={pList}/>
         </div>
 
         <Modal
