@@ -24,8 +24,8 @@ class PortfolioItem extends Component {
       super(props);
       this.state = {
         modalIsOpen: false,
-        portfolioItems: props.portfolioItems,
       }
+      this.closeModal = this.closeModal.bind(this);
   }
 
   //modal
@@ -35,24 +35,38 @@ class PortfolioItem extends Component {
 
   afterOpenModal(){
     // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
+    // this.subtitle.style.color = '#f00';
   }
 
   closeModal(){
     this.setState({ modalIsOpen: false});
   }
 
+  //modal content
+  val(index){
+    let currItem = this.props.portfolioItems[index];
+    // let currItem = e.currentTarget;
+    // let currImg = currItem.querySelector('thumb');
+    // let currTitle = currItem.querySelector('title');
+    // var h4title = this.getElementById('title');
+    console.log(currItem);
+    this.setState({
+      modalIsOpen: true
+    })
+  }
+  //end modal content
+
   render(){
     let portfolioItems;
-    if (this.state.portfolioItems.length > 0) {
-      portfolioItems = this.state.portfolioItems.map(e =>
-                  <div key={e.id} className="card p-3 col-12 col-md-4 col-lg-3 portfolio-item">
+    if (this.props.portfolioItems.length > 0) {
+      portfolioItems = this.props.portfolioItems.map((e, index) =>
+                  <div key={e.id} onClick={this.val.bind(this, index)} className="card p-3 col-12 col-md-4 col-lg-3 portfolio-item">
                       <div className="card-wrapper">
                           <div className="card-img">
-                              <img src={`https://filestore.deterioration37.hasura-app.io/v1/file/` + e.file_id} title={e.title} alt={e.title} media-simple="true" />
+                              <img className="thumb" src={`https://filestore.deterioration37.hasura-app.io/v1/file/` + e.file_id} title={e.title} alt={e.title} media-simple="true" />
                           </div>
                           <div className="card-box">
-                              <h4 className="card-title mbr-fonts-style mbr-bold display-7">{e.title}</h4>
+                              <h4 className="card-title mbr-fonts-style mbr-bold display-7 title">{e.title}</h4>
                               <p>{e.content}</p>
                           </div>
                           <div className="mbr-section-btn"><a href="articles.html" className="btn btn-warning display-4">Details</a></div>
@@ -72,7 +86,7 @@ class PortfolioItem extends Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                     >
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+                    <h2>{this.state.modaltitle}</h2>
                     <button onClick={this.closeModal}>close</button>
                     <p>modal content</p>
               </Modal>
