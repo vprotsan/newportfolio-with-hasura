@@ -3,7 +3,7 @@ import '../css/contact.css';
 
 const Contact = () => (
   <section className="resume-section p-3 p-lg-5 d-flex flex-column col-md-offset-6" id="contact">
-    <h1>Drop me a line!  Ask me a question!</h1>
+    <h1>Heey!  Look forward hearing from you!</h1>
 
     <div className="container" id="panda-animation">
         <div className="container-for-animation">

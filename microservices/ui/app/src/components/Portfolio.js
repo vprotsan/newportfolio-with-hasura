@@ -1,28 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import Modal from 'react-modal';
 
 import 'react-select/dist/react-select.css';
-
 import PortfolioItem from './PortfolioItem';
 
-
-//Modal
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#page');
-//end modal
 
 class Portfolio extends Component {
 
@@ -31,14 +13,8 @@ class Portfolio extends Component {
       this.state = {
           categories: [],
           portfolioItems: [],
-          modalIsOpen: false,
-
           selectValue: null
       }
-      //modal
-      this.openModal = this.openModal.bind(this);
-      this.afterOpenModal = this.afterOpenModal.bind(this);
-      this.closeModal = this.closeModal.bind(this);
   }
 
   //dropdown filter
@@ -56,22 +32,6 @@ class Portfolio extends Component {
 		});
 	}
   //end dropdown filter
-
-  //modal
-  openModal() {
-    this.setState({modalIsOpen: true});
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
-
-  closeModal() {
-    this.setState({modalIsOpen: false});
-  }
-  //end modal
-
 
   componentDidMount(){
       var self = this;
@@ -160,31 +120,10 @@ class Portfolio extends Component {
         					value={this.state.selectValue}
         					onChange={this.updateValue}
         				/>
-
             </div>
           </div>
-          <PortfolioItem onClick={this.openModal} portfolioItems={pList}/>
+          <PortfolioItem portfolioItems={pList}/>
         </div>
-
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-
-          <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-          <button onClick={this.closeModal}>close</button>
-          <div>I am a modal</div>
-          <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
-        </Modal>
 
       </section>
     )
