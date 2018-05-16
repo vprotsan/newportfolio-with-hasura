@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import '../css/portfolioItem.css';
 
@@ -110,8 +111,8 @@ class PortfolioItem extends Component {
                           <p>{this.state.modalContent}</p>
                           <h3 className="my-3">Project Details</h3>
                           <ul>
-                            <li><a href="#">on GitHub</a></li>
-                            <li><a href="#">Live preview</a></li>
+                            <li><Link to="/projects/amex/index.html" target="_self">on GitHub</Link></li>
+                            <li><Link to="#" target="_self">Live preview</Link></li>
                           </ul>
                         </div>
                       </div>
