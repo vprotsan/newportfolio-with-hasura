@@ -1,0 +1,20 @@
+//font family
+$font-family: 'Libre Franklin', sans-serif;
+
+//medium
+%font-medium {
+	font-family: $font-family;
+	font-weight: 500;
+}
+
+//semi-bold
+%font-semibold {
+	font-family: $font-family;
+	font-weight: 600;
+}
+
+//book
+%font-book {
+	font-family: $font-family;
+	font-weight: 400;
+}

@@ -1,0 +1,414 @@
+body {
+	@extend %font-book;
+	font-size: $body-text-size;
+	color: $font-color;
+	line-height: normal;
+	width: 100%;
+	height: 100%;
+
+	@include mq(tablet-small){
+		font-size: 90%;
+	}
+
+	@include mq(tablet-wide){
+		font-size: $body-text-size;
+	}
+}
+
+main.container-fluid {
+	border: 4px solid $gray;
+	padding: 0;
+}
+
+section {
+	padding-left: 15px;
+	padding-right: 15px;
+
+	h2 {
+		@extend %font-semibold;
+	}
+}
+
+.row {
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	display: inline-block;
+	@extend %font-medium;
+	font-size: $header-text-size;
+	padding: 1em 0.5em 1em 1.5em;
+}
+
+h2 {
+	@extend %font-medium;
+	padding-left: 0;
+}
+
+h3 {
+	display: block;
+	@extend %font-semibold;
+	text-align: center;
+}
+
+.fade {
+	opacity: 1;
+}
+
+.sub-header {
+	padding-left: 0;
+
+	h2 {
+		@extend %font-semibold;
+		padding-left: 0;
+		padding-bottom: 0;
+
+		@include mq(tablet) {
+			padding-left: 15px;
+		}
+	}
+
+	span {
+		@extend %font-medium;
+		padding-bottom: 0.5em;
+	}
+
+	.arrow {
+		position: relative;
+		top: 5px;
+		display: inline-block;
+		color: $orange;
+		cursor: pointer;
+		line-height: 0.5;
+    	font-size: 40px;
+    	transform-origin: 50% 100%;
+    	@include transition(transform, 0.2s, linear);
+
+    	&.down {
+			transform: rotate(90deg);
+		}
+	}
+
+	p.hint {
+		display: none;
+		line-height: 2;
+		background: $light-blue;
+		margin: 1em;
+        padding: 1em 2em;
+        @include transition(all, 0.2s, linear);
+
+
+        &.show {
+        	display: block;
+        }	
+	}
+}
+
+p {
+	@extend %font-book;
+}
+
+button {
+	font-size: 80%;
+
+	@include mq(tablet-wide){
+    	font-size: $body-text-size;
+    }
+}
+
+button.select {
+	@extend %font-medium;
+	border-radius: 0;
+	border: none;
+	background:$main-blue;
+	box-shadow: none;
+	color: #fff;
+	//margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    padding: 0.6em;
+    width: 100%;
+    @include transition(background, 0.2s, linear);
+
+    &:hover {
+    	background: darken($main-blue, 10%);
+    }
+}
+
+button.start {
+	background: $gray;
+	border: 0;
+	color: #fff;
+	width: 100%;
+    padding: 0.6em;
+    margin: 0.3em 0;
+}
+
+input.form-control, 
+textarea.form-control {
+	border: 1px solid $gray;
+	border-radius: 0;
+	box-shadow: none;
+
+	@include placeholder {
+		@extend %font-medium;
+	}
+}
+
+label {
+	@extend %font-semibold;
+
+	@include mq(tablet){
+		padding-bottom: 1em;
+	}
+}
+
+select {
+	width: 100%;
+	height: 32px;
+	padding: 6px;
+	font-size: 14px;
+}
+
+.line {
+	border-bottom: 5px solid $main-blue;
+}
+
+.else-hide {
+	display: none;
+}
+
+
+//toggle class for a button
+.active {
+	   background: $orange;
+
+	    &:hover {
+	    	background: darken($orange, 10%);
+	    }
+	}
+
+
+
+//////////////////////////////////////////
+
+
+.header {
+	background-color: $main-blue;
+	margin-top: -4px;
+    margin-left: -15px;
+    margin-right: -15px;
+	width: auto;
+
+	.header-text {
+		color: #fff;
+	}
+}
+
+.fileupload-buttons {
+
+	@include mq(tablet-small){
+		width: 18%;
+	}
+	
+	p {
+		margin: 0 0 1em 0;
+		text-align: center;
+
+		@include mq(tablet){
+			text-align: left;
+		}
+	}
+
+	.fileinput-button {
+			margin-top: 2em 1em;
+
+			@include mq(tablet-small){
+				margin-top: 0;
+			}
+	}
+}
+
+.img-plhd {
+
+		.row > .col-md-3 {
+			@include mq(tablet, max){
+				max-width: 80%;
+				float: none;
+				margin: 0 auto;
+			}
+		
+		}
+
+		.row .col-xs-12 {
+			margin-bottom: 2em;
+		}
+	
+		.preview-files {
+
+			#target {
+				border: 1px solid $gray;
+				width: 100%;
+				height: auto;
+			}
+
+			#hidden-input-img {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				opacity: 0;
+			}
+		}
+	
+}
+
+.template-download {
+		padding-bottom: 1em;
+
+		&>div {
+			overflow: hidden;
+		}
+
+		&.col-xs-4 {
+			width: 33.33333333%;
+		}
+
+		.preview {
+			border: 1px solid $gray;
+			margin-bottom: 1em;
+			width: 100%;
+			height: 14vh;
+			overflow: hidden;
+			//@include aspect-ratio();
+		
+
+			img {
+				  display: block;
+				  //max-width:230px;
+				 // max-height:95px;
+				  //width: auto;
+				  //height: auto;
+
+			
+			}
+
+			a {
+				//display: block;
+
+			}
+		}
+
+		.delete {
+			background: none;
+			border: 0;
+		}
+
+		.prof-photo {
+			float: right;
+
+			label {
+				font-size: 0.8em;
+				padding-right: 5px;
+			}
+		}
+
+		.col-xs-4 {
+		    width: 33.33333333%;
+		}
+	}
+
+
+#about {
+	label.col-sm-4 {
+		text-align: right;
+	}
+}
+
+.business-about {
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+
+	.row {
+		margin: 0;
+	}
+
+	h2 {
+		float: left;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.attachment-upload {
+
+	.fileupload-buttons {
+
+		@include mq(phablet, max) {
+    			width: 100%;
+    		}
+		width: 75%;
+	}
+	
+	.ui-state-default {
+		background: none;
+		color: grey;
+		border: 1px solid grey;
+	}
+
+	button[type='submit'] {
+		    width: 40%;
+    		float: right;
+    		background: grey;
+    		color: #fff;
+
+    		@include mq(phablet, max) {
+    			width: 100%;
+    		}
+
+    		&.active-btn-attachment {
+    			background: $orange;
+
+    			&:hover {
+    				background: darken($orange, 10%);
+    			}
+    		}
+	}
+}
+
+#attachments {
+
+	border-top: 5px solid $main-blue;
+	margin-top: 2em;
+
+	.select-files {
+		background: none;
+		border: 1px solid $gray;
+		color: $gray;
+		padding: 0.3em;
+		margin-bottom: 1em;
+		text-align: left;
+
+	}
+
+	button.delete {
+		float: left;
+        padding-right: 1em;
+	}
+}
+
+label.req {
+	position: relative;
+    left: -8px;
+}
+
+
+
+
+
