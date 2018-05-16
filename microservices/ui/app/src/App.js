@@ -10,6 +10,7 @@ import Homepage from './components/Homepage';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import About from './components/About';
+import Login from './components/Login';
 import NotFound from './components/NotFound';
 
 import './css/resume.css';
@@ -24,6 +25,7 @@ const App = () => (
               <Route exact path="/portfolio" render={() => <Portfolio />}/>
               <Route exact path="/about" render={() => <About />}/>
               <Route exact path="/contact" render={() => <Contact />}/>
+              <Route exact path="/login" render={() => <Login />}/>
               <Route component={ NotFound }/>
             </Switch>
           </div>
