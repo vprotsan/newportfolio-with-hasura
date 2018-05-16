@@ -24,6 +24,9 @@ class PortfolioItem extends Component {
       super(props);
       this.state = {
         modalIsOpen: false,
+        modalTitle: '',
+        modalImg: '',
+        modalContent: ''
       }
       this.closeModal = this.closeModal.bind(this);
   }
@@ -39,19 +42,24 @@ class PortfolioItem extends Component {
   }
 
   closeModal(){
-    this.setState({ modalIsOpen: false});
+    this.setState({
+      modalIsOpen: false,
+      modalTitle: '',
+      modalImg: '',
+      modalContent: ''
+    });
   }
 
   //modal content
   val(index){
     let currItem = this.props.portfolioItems[index];
-    // let currItem = e.currentTarget;
-    // let currImg = currItem.querySelector('thumb');
-    // let currTitle = currItem.querySelector('title');
-    // var h4title = this.getElementById('title');
-    console.log(currItem);
+
+    console.log(currItem.title);
     this.setState({
-      modalIsOpen: true
+      modalIsOpen: true,
+      modalTitle: currItem.title,
+      modalImg: currItem.file_id,
+      modalContent: currItem.content
     })
   }
   //end modal content
@@ -86,9 +94,9 @@ class PortfolioItem extends Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                     >
-                    <h2>{this.state.modaltitle}</h2>
+                    <h2>{this.state.modalTitle}</h2>
                     <button onClick={this.closeModal}>close</button>
-                    <p>modal content</p>
+                    <p>{this.state.modalContent}</p>
               </Modal>
             </div> );
 
