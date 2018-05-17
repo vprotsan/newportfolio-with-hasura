@@ -10,6 +10,7 @@ import {
 import Menu from './components/Menu';
 import Homepage from './components/Homepage';
 import Portfolio from './components/Portfolio';
+import PortfolioItemAdd from './components/PortfolioItemAdd';
 import Contact from './components/Contact';
 import About from './components/About';
 import Login from './components/Login';
@@ -85,13 +86,14 @@ render(){
               <Route exact path="/contact" render={() => <Contact />}/>
               <Route exact path="/login" render={() => (
                 checkIfloggedIn ?
-                <Redirect to="/addPortfolioItem"/> :
+                <Redirect to="/portfolioitemadd"/> :
                 <Login
                   handleLoginChange={this.handleLoginChange}
                   handlePasswordChange={this.handlePasswordChange}
                   onLogin={this.onlogin}/>
                 )}
               />
+              <Route exact path="/portfolioitemadd" render={() => <PortfolioItemAdd />}/>
               <Route component={ NotFound }/>
             </Switch>
           </div>
