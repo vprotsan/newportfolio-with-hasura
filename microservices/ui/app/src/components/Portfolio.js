@@ -65,7 +65,7 @@ class Portfolio extends Component {
        axios.post(EndPoint, {
            "headers": {
              'Content-Type': 'application/json',
-             'Authorization': "Bearer 9cec1b3d25d97a3ff2ba35c83449babefa87eac9b9ebc2fe",
+             'Authorization': process.env.REACT_APP_HASURA_ACCESS_TOKEN,
              'X-Hasura-Role': 'admin',
            },
            'type': 'select',
