@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import '../css/portfolioitemadd.css';
 
-const PortfolioItemAdd = props => (
+class PortfolioItemAdd extends Component {
 
     <form class="well form-horizontal" action=" " method="post"  id="contact_form">
         <fieldset>
             <legend>Add New Portfolio Item</legend>
+
             <div class="form-group">
               <label class="col-md-4 control-label">Title</label>
               <div class="col-md-4 inputGroupContainer">
@@ -18,36 +19,16 @@ const PortfolioItemAdd = props => (
             </div>
 
             <div class="form-group">
-              <label class="col-md-4 control-label" >Last Name</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="last_name" placeholder="Last Name" class="form-control"  type="text" />
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-md-4 control-label">State</label>
+                <label class="col-md-4 control-label">Category</label>
                 <div class="col-md-4 selectContainer">
                     <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                     <select name="state" class="form-control selectpicker" >
-                      <option value=" " >Please select your state</option>
+                      <option value=" " >Please select category</option>
                       <option >Wyoming</option>
                     </select>
                   </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-md-4 control-label">Website or domain name</label>
-               <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                    <input name="website" placeholder="Website or domain name" class="form-control" type="text" />
-                </div>
-              </div>
             </div>
 
             <div class="form-group">
@@ -57,6 +38,36 @@ const PortfolioItemAdd = props => (
                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                     <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
               </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label">GitHub link</label>
+               <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                    <input name="website" placeholder="Website or domain name" class="form-control" type="text" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label">Live preview link(1)</label>
+               <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                    <input name="website" placeholder="Website or domain name" class="form-control" type="text" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label">Live preview link(2)</label>
+               <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                    <input name="website" placeholder="Website or domain name" class="form-control" type="text" />
+                </div>
               </div>
             </div>
 
@@ -71,6 +82,6 @@ const PortfolioItemAdd = props => (
         </fieldset>
     </form>
 
-)
+}
 
 export default PortfolioItemAdd;
