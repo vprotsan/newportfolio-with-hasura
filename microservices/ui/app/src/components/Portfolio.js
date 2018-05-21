@@ -4,6 +4,7 @@ import Select from 'react-select';
 
 import 'react-select/dist/react-select.css';
 import PortfolioItem from './PortfolioItem';
+import Loading from './Loading';
 
 
 class Portfolio extends Component {
@@ -13,7 +14,8 @@ class Portfolio extends Component {
       this.state = {
           categories: [],
           portfolioItems: [],
-          selectValue: null
+          selectValue: null,
+          isLoading: true
       }
   }
 
@@ -55,6 +57,7 @@ class Portfolio extends Component {
            console.log('returned data:' + data.data);
            self.setState({
               categories: data.data,
+              // isLoading: false
             })
          })
          .catch(function (error) {
@@ -93,11 +96,16 @@ class Portfolio extends Component {
 
   render(){
     const cat = this.state.categories.map(e => ({value: e.id, label: e.title}));
+
     var pList;
     if (this.state.selectValue){
       pList = this.state.portfolioItems.filter( item => item.category_id === this.state.selectValue );
     } else {
       pList = this.state.portfolioItems;
+    }
+
+    if (this.state.isLoading) {
+         return <Loading/>
     }
 
 

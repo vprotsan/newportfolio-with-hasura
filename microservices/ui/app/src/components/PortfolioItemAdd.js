@@ -36,20 +36,19 @@ class PortfolioItemAdd extends Component {
 
      handleThumbnail(){
         const file = this.fileInput.files[0];
+        console.log(file);
+        var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
         let data = {
             headers: {
-              "Authorization": process.env.REACT_APP_HASURA_ACCESS_TOKEN,
+              "Authorization" : "Bearer " + authToken,
               "X-Hasura-Role": "admin"
         	},
-        	body: file
+        	// body: file
         }
-        const url = "https://filestore.deterioration37.hasura-app.io/v1/file";
+        const url = `https://filestore.deterioration37.hasura-app.io/v1/file`;
         axios.post(url, data)
-          .then(response => {
-              response.json();
-              console.log(response);
-          })
-          .catch(error => console.log(error))
+          .then(response => console.log(response))
+          .catch(error => console.log(error));
      }
 
      handleTitle(event){
@@ -83,6 +82,19 @@ class PortfolioItemAdd extends Component {
      }
 
      componentDidMount(){
+
+         var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
+         var data = {
+             headers: {
+               "Authorization" : "Bearer " + authToken,
+               "Content-Type": "application/json"
+         	},
+         }
+         axios.get(`https://auth.deterioration37.hasura-app.io/v1/user/info`, data)
+           .then(response => console.log(response))
+           .catch(error => console.log(error));
+
+           
          var self = this;
          const EndPoint = `https://data.deterioration37.hasura-app.io/v1/query`;
          axios.post(EndPoint, {

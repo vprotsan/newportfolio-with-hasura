@@ -7,6 +7,9 @@ import {
   Switch
 } from 'react-router-dom';
 
+import {AuthConsumer} from 'react-check-auth';
+import {AuthProvider} from "react-check-auth";
+
 import Menu from './components/Menu';
 import Homepage from './components/Homepage';
 import Portfolio from './components/Portfolio';
@@ -15,6 +18,7 @@ import Contact from './components/Contact';
 import About from './components/About';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
+import PrivateRoute from './components/PrivateRoute';
 
 import './css/resume.css';
 import './css/style.css';
@@ -26,11 +30,12 @@ class App extends Component {
     this.state = {
       username: "",
       password: "",
-      logged: false
+      authed: false,
+      component: '',
     }
-    this.onlogin = this.onlogin.bind(this)
-    this.handleLoginChange = this.handleLoginChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    // this.onlogin = this.onlogin.bind(this);
+    this.handleLoginChange = this.handleLoginChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   handleLoginChange = e =>
@@ -43,57 +48,67 @@ class App extends Component {
       password: e.target.value
   })
 
-  onlogin(event) {
-      event.preventDefault();
-      var url = "https://auth.deterioration37.hasura-app.io/v1/login";
-      axios.post(url, {
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "provider": "username",
-        "data": {
-           "username": this.state.username,
-           "password": this.state.password
-       }
-     }).then(data => {
-       this.setState({
-         logged: true
-       })
-       console.log(data);
-       var authToken = data.auth_token
-       window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
-     }).catch(function (error) {
-        console.log(error);
-     })
-  }
+  // onlogin = event => {
+  //     event.preventDefault();
+  //
+  //     var url = `https://auth.deterioration37.hasura-app.io/v1/login`;
+  //     axios({
+  //       "url": "https://auth.deterioration37.hasura-app.io/v1/login",
+  //       "method" : 'POST',
+  //       "headers": {
+  //         "Cache-Control": "no-cache"
+  //       },
+  //       "provider": "username",
+  //       "data": {
+  //          "username": this.state.username,
+  //          "password": this.state.password
+  //      }
+  //    }).then((data) => {
+  //      this.setState({
+  //        authed: true
+  //      })
+  //      console.log(data);
+  //      var authToken = data.auth_token
+  //      window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
+  //    }).catch(function (error) {
+  //       console.log(error);
+  //    })
+  // }
 
 render(){
-  let checkIfloggedIn = ()=>{
-    if ( this.state.logged || window.localStorage.getItem('HASURA_AUTH_TOKEN')){
-      return true;
-    }else {
-      return false;
-    }
-  }
+  // let checkIfloggedIn;
+  //
+  // if  (( window.localStorage.getItem('HASURA_AUTH_TOKEN') !== "undefined" ) &&
+  //      ( window.localStorage.getItem('HASURA_AUTH_TOKEN') !== null )){
+  //   checkIfloggedIn = true;
+  // } else {
+  //   checkIfloggedIn = false;
+  // }
+  // console.log(checkIfloggedIn);
+
   return(
       <BrowserRouter>
         <div className="App" id="page-top">
+            { React.version }
           <div className="container-fluid p-0">
             <Switch>
               <Route exact path="/" component={Homepage} />
               <Route exact path="/portfolio" render={() => <Portfolio />}/>
               <Route exact path="/about" render={() => <About />}/>
               <Route exact path="/contact" render={() => <Contact />}/>
-              <Route exact path="/login" render={() => (
+              {/* <Route exact path="/login" render={() => (
                 checkIfloggedIn ?
                 <Redirect to="/portfolioitemadd"/> :
                 <Login
                   handleLoginChange={this.handleLoginChange}
                   handlePasswordChange={this.handlePasswordChange}
                   onLogin={this.onlogin}/>
-                )}
-              />
-              <Route exact path="/portfolioitemadd" render={() => <PortfolioItemAdd />}/>
+              )
+              }/> */}
+
+              <PrivateRoute authed={this.state.authed} path='/portfolioitemadd' component={PortfolioItemAdd} />
+              {/* <Route exact path="/portfolioitemadd" render={() => <PortfolioItemAdd />}/> */}
+              <Route exact path="/login" render={() => <Login />} />
               <Route component={ NotFound }/>
             </Switch>
           </div>
