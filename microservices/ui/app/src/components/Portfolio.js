@@ -57,7 +57,7 @@ class Portfolio extends Component {
            console.log('returned data:' + data.data);
            self.setState({
               categories: data.data,
-              // isLoading: false
+              isLoading: false
             })
          })
          .catch(function (error) {

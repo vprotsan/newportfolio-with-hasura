@@ -1,0 +1,13 @@
+.form-signin {
+  width: 50%;
+  max-width: 600px;
+  min-width: 320px;
+  margin: 0 auto; }
+  .form-signin input, .form-signin button {
+    border-radius: 0;
+    border: 0;
+    margin: 10px 0; }
+  .form-signin button {
+    background: #0f4c5f; }
+  .form-signin label {
+    color: #0f4c5f; }

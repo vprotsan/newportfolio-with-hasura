@@ -7,8 +7,8 @@ import {
   Switch
 } from 'react-router-dom';
 
-import {AuthConsumer} from 'react-check-auth';
-import {AuthProvider} from "react-check-auth";
+import { AuthConsumer } from 'react-check-auth';
+import { AuthProvider } from "react-check-auth";
 
 import Menu from './components/Menu';
 import Homepage from './components/Homepage';
@@ -25,15 +25,15 @@ import './css/style.css';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       username: "",
       password: "",
       authed: false,
       component: '',
     }
-    // this.onlogin = this.onlogin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLoginChange = this.handleLoginChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
@@ -48,32 +48,31 @@ class App extends Component {
       password: e.target.value
   })
 
-  // onlogin = event => {
-  //     event.preventDefault();
-  //
-  //     var url = `https://auth.deterioration37.hasura-app.io/v1/login`;
-  //     axios({
-  //       "url": "https://auth.deterioration37.hasura-app.io/v1/login",
-  //       "method" : 'POST',
-  //       "headers": {
-  //         "Cache-Control": "no-cache"
-  //       },
-  //       "provider": "username",
-  //       "data": {
-  //          "username": this.state.username,
-  //          "password": this.state.password
-  //      }
-  //    }).then((data) => {
-  //      this.setState({
-  //        authed: true
-  //      })
-  //      console.log(data);
-  //      var authToken = data.auth_token
-  //      window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
-  //    }).catch(function (error) {
-  //       console.log(error);
-  //    })
-  // }
+  handleSubmit = e => {
+      alert('prevented');
+      e.preventDefault();
+
+      var url = `https://auth.deterioration37.hasura-app.io/v1/login`;
+      axios.post(url, {
+
+            "provider": "username",
+            "data": {
+                "username": this.state.username,
+                "password": this.state.password
+            }
+        
+      }
+     ).then((data) => {
+       this.setState({
+         authed: true
+       })
+       console.log(data);
+       var authToken = data.auth_token
+       window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
+     }).catch(function (error) {
+        console.log(error);
+     })
+  }
 
 render(){
   // let checkIfloggedIn;
@@ -108,7 +107,12 @@ render(){
 
               <PrivateRoute authed={this.state.authed} path='/portfolioitemadd' component={PortfolioItemAdd} />
               {/* <Route exact path="/portfolioitemadd" render={() => <PortfolioItemAdd />}/> */}
-              <Route exact path="/login" render={() => <Login />} />
+              <Route exact path="/login" render={() =>
+                                        <Login
+                                          handleLoginChange={this.handleLoginChange}
+                                          handlePasswordChange={this.handlePasswordChange}
+                                          handleSubmit={this.handleSubmit}/>}
+                                        />
               <Route component={ NotFound }/>
             </Switch>
           </div>

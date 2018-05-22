@@ -6,7 +6,7 @@ const Login = props => (
 
       <div className="container">
 
-        <form onSubmit={props.onlogin} className="form-signin">
+        <form onSubmit={ props.handleSubmit } className="form-signin">
           <h2 className="form-signin-heading">Please sign in</h2>
           <label htmlFor="inputEmail" className="sr-only">Email address</label>
           <input name="login" onChange={props.handleLoginChange} type="email" id="inputEmail" className="form-control" placeholder="Email address" required="" autoFocus="" />
