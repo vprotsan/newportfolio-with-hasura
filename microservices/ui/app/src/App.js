@@ -32,7 +32,6 @@ class App extends Component {
       password: "",
       authed: false,
       component: <PortfolioItemAdd />,
-      currUser: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLoginChange = this.handleLoginChange.bind(this);
@@ -64,20 +63,24 @@ class App extends Component {
       }
      ).then((data) => {
        this.setState({
-         authed: true,
-         currUser: data.data
+         authed: true
        }, function(){
          console.log(this.state.currUser);
        })
-       authToken = data.data.auth_token
+       authToken = data.data.auth_token;
        window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
-       console.log(authToken);
+       window.localStorage.setItem('currentUser', JSON.stringify(data.data));
+       // let curUser = window.localStorage.getItem('currentUser');
+       //
+       // console.log(JSON.parse(curUser));
      }).catch(function (error) {
         console.log(error);
      })
   }
 
 render(){
+
+  let user = window.localStorage.getItem('currentUser');
 
   return(
       <BrowserRouter>
@@ -89,17 +92,22 @@ render(){
               <Route exact path="/portfolio" render={() => <Portfolio />}/>
               <Route exact path="/about" render={() => <About />}/>
               <Route exact path="/contact" render={() => <Contact />}/>
-              <PrivateRoute authed={this.state.authed} path='/portfolioitemadd' component={PortfolioItemAdd} />
+              <PrivateRoute authed={user} path='/portfolioitemadd' component={PortfolioItemAdd} />
               <Route exact path="/login" render={() =>
+                                        user
+                                        ?
+                                        <Redirect to={{pathname: '/portfolioitemadd'}} />
+                                        :
                                         <Login
                                           handleLoginChange={this.handleLoginChange}
                                           handlePasswordChange={this.handlePasswordChange}
                                           handleSubmit={this.handleSubmit}/>}
                                         />
+                                      />
               <Route component={ NotFound }/>
             </Switch>
           </div>
-          <Menu currUser={this.state.currUser.username}/>
+          <Menu />
         </div>
       </BrowserRouter>
     )

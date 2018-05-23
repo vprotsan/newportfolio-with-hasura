@@ -3,19 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 const Menu = (props) => {
 
-    // function addPortfolioItemMenu(props){
-    //     if (props.currUser){
-    //         return(
-    //             <li className="nav-item">
-    //               <NavLink className="nav-link js-scroll-trigger" exact to="/portfolioitemadd">add new portfolio item</NavLink>
-    //             </li>
-    //         )
-    //     }
-    // }
+    let user = window.localStorage.getItem('currentUser');
 
     return(
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-          <div className="loggedInUser">{props.currUser}</div>
+          <div className="loggedInUser">{JSON.parse(user).username}</div>
           <a className="navbar-brand js-scroll-trigger" href="#page-top">
             <span className="d-block d-lg-none">V.Protsan</span>
           </a>
@@ -39,7 +31,7 @@ const Menu = (props) => {
               <li className="nav-item">
                 <NavLink className="nav-link js-scroll-trigger" exact to="/contact">contact</NavLink>
               </li>
-              {props.currUser
+              { user
                   ?
                   <li className="nav-item">
                     <NavLink className="nav-link js-scroll-trigger" exact to="/portfolioitemadd">add new portfolio item</NavLink>
