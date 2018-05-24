@@ -7,7 +7,7 @@ const Menu = (props) => {
 
     return(
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-          <div className="loggedInUser">{JSON.parse(user).username}</div>
+          <div className="loggedInUser">{user ? JSON.parse(user).username : null }</div>
           <a className="navbar-brand js-scroll-trigger" href="#page-top">
             <span className="d-block d-lg-none">V.Protsan</span>
           </a>
@@ -33,9 +33,14 @@ const Menu = (props) => {
               </li>
               { user
                   ?
-                  <li className="nav-item">
-                    <NavLink className="nav-link js-scroll-trigger" exact to="/portfolioitemadd">add new portfolio item</NavLink>
-                  </li>
+                  <ul>
+                      <li className="nav-item">
+                        <NavLink className="nav-link js-scroll-trigger" exact to="/portfolioitemadd">add new portfolio item</NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <button onClick={props.userLogOut} className="nav-link js-scroll-trigger" >Log out</button>
+                      </li>
+                  </ul>
                   :
                   null
               }

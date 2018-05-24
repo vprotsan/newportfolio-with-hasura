@@ -5,7 +5,7 @@ import PortfolioItemAdd from './PortfolioItemAdd';
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
 
-  let user = window.localStorage.getItem('currentUser');
+  let user = window.localStorage.getItem('currentUser') || false;
 
   return (
     <Route

@@ -8,7 +8,7 @@ class PortfolioItemAdd extends Component {
           super();
           this.state = {
               allCategories: [],
-              chosenCat: ' ',
+              chosenCat: 0,
               thumb: '',
               title: '',
               content: '',
@@ -17,11 +17,19 @@ class PortfolioItemAdd extends Component {
               livePreview2: ''
           }
           this.handleThumbnail = this.handleThumbnail.bind(this);
+          this.handleChosenCategory = this.handleChosenCategory.bind(this);
+          this.uploadSuccess = this.uploadSuccess.bind(this);
+          this.handleTitle = this.handleTitle.bind(this);
+          this.handleContent = this.handleContent.bind(this);
+          this.handleGithubLink = this.handleGithubLink.bind(this);
+          this.handlelivePreview = this.handlelivePreview.bind(this);
+          this.handlelivePreview2 = this.handlelivePreview2.bind(this);
      }
 
      handleChosenCategory(event){
-         this.setState({chosenCat: event.target.value});
-         console.log(this.state.chosenCat);
+         this.setState({chosenCat: event.target.value}, function(){
+             console.log(this.state.chosenCat);
+         });
      }
 
      //file upload
@@ -29,24 +37,19 @@ class PortfolioItemAdd extends Component {
        this.setState({thumb: data.file_id });
     }
 
-    uploadFail(error) {
-      this.setState({thumb: ''});
-    }
-
-
      handleThumbnail(){
         const file = this.fileInput.files[0];
-        console.log(file);
         var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
+        console.log(authToken);
         let data = {
             headers: {
-              "Authorization" : "Bearer " + authToken,
-              "X-Hasura-Role": "admin"
-        	},
-        	// body: file
+                "Content-Type": "image/png",
+                "Authorization" : `Bearer ${authToken}`,
+            },
+        	body: file
         }
-        const url = `https://filestore.deterioration37.hasura-app.io/v1/file`;
-        axios.post(url, data)
+        const fileUploadUrl = `https://filestore.deterioration37.hasura-app.io/v1/file`;
+        axios.post(fileUploadUrl, data)
           .then(response => console.log(response))
           .catch(error => console.log(error));
      }
@@ -79,6 +82,36 @@ class PortfolioItemAdd extends Component {
      createNewPortfolioItem = (event) => {
          event.preventDefault();
          console.log(event);
+
+         // var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
+
+         var articleURL = "https://data.deterioration37.hasura-app.io/v1/query";
+         var newArticle = {
+             "headers": {
+               'Content-Type': 'application/json',
+               'X-Hasura-Role': "user",
+               'Authorization': process.env.REACT_APP_HASURA_ACCESS_TOKEN,
+             },
+            "type": "insert",
+            "args": {
+                "table": "article",
+                "objects": [
+                    {
+                        "live_preview_link": this.state.livePreview,
+                        "github_link": this.state.githubLink,
+                        "website_link": this.state.livePreview2,
+                        "title": this.state.title,
+                        "category_id": this.state.chosenCat,
+                        "content": this.state.content,
+                        "file_id": "121231231231",
+                        "author_id": 1
+                    }
+                ]
+            }
+         }
+         axios.post(articleURL, newArticle)
+             .then(response => console.log(response))
+             .catch(error => console.log(error));
      }
 
      componentDidMount(){
@@ -86,15 +119,12 @@ class PortfolioItemAdd extends Component {
          var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
          var data = {
              headers: {
-               "Authorization" : "Bearer " + authToken,
+               'Authorization': process.env.REACT_APP_HASURA_ACCESS_TOKEN,
                "Content-Type": "application/json"
          	},
          }
-         axios.get(`https://auth.deterioration37.hasura-app.io/v1/user/info`, data)
-           .then(response => console.log(response))
-           .catch(error => console.log(error));
 
-           
+
          var self = this;
          const EndPoint = `https://data.deterioration37.hasura-app.io/v1/query`;
          axios.post(EndPoint, {
@@ -136,7 +166,7 @@ class PortfolioItemAdd extends Component {
                       <div className="col-md-4 inputGroupContainer">
                       <div className="input-group">
                       <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                        <input  name="first_name" placeholder="First Name" className="form-control"  type="text" />
+                        <input onChange={this.handleTitle} name="first_name" placeholder="First Name" className="form-control"  type="text" />
                         </div>
                       </div>
                     </div>
@@ -156,8 +186,8 @@ class PortfolioItemAdd extends Component {
                         <div className="col-md-4 selectContainer">
                             <div className="input-group">
                             <span className="input-group-addon"><i className="glyphicon glyphicon-list"></i></span>
-                            <select value={this.state.chosenCat} onChange={this.handleChosenCategory} name="state" className="form-control selectpicker" >
-                              <option value=" ">Please select category</option>
+                            <select value={this.state.chosenCat} onChange={this.handleChosenCategory} name="category" className="form-control selectpicker" >
+                              <option value="0">Please select category</option>
                               {categories}
                             </select>
                           </div>
@@ -169,7 +199,7 @@ class PortfolioItemAdd extends Component {
                         <div className="col-md-4 inputGroupContainer">
                         <div className="input-group">
                             <span className="input-group-addon"><i className="glyphicon glyphicon-pencil"></i></span>
-                            <textarea className="form-control" name="comment" placeholder="Project Description"></textarea>
+                            <textarea onChange={this.handleContent} className="form-control" name="comment" placeholder="Project Description"></textarea>
                       </div>
                       </div>
                     </div>
@@ -179,7 +209,7 @@ class PortfolioItemAdd extends Component {
                        <div className="col-md-4 inputGroupContainer">
                         <div className="input-group">
                             <span className="input-group-addon"><i className="glyphicon glyphicon-globe"></i></span>
-                            <input name="website" placeholder="Website or domain name" className="form-control" type="text" />
+                            <input onChange={this.handleGithubLink} name="website" placeholder="Website or domain name" className="form-control" type="text" />
                         </div>
                       </div>
                     </div>
@@ -189,7 +219,7 @@ class PortfolioItemAdd extends Component {
                        <div className="col-md-4 inputGroupContainer">
                         <div className="input-group">
                             <span className="input-group-addon"><i className="glyphicon glyphicon-globe"></i></span>
-                            <input name="website" placeholder="Website or domain name" className="form-control" type="text" />
+                            <input onChange={this.handlelivePreview} name="website" placeholder="Website or domain name" className="form-control" type="text" />
                         </div>
                       </div>
                     </div>
@@ -199,7 +229,7 @@ class PortfolioItemAdd extends Component {
                        <div className="col-md-4 inputGroupContainer">
                         <div className="input-group">
                             <span className="input-group-addon"><i className="glyphicon glyphicon-globe"></i></span>
-                            <input name="website" placeholder="Website or domain name" className="form-control" type="text" />
+                            <input onChange={this.handlelivePreview2} name="website" placeholder="Website or domain name" className="form-control" type="text" />
                         </div>
                       </div>
                     </div>

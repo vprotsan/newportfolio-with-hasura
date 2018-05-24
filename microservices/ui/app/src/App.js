@@ -48,6 +48,21 @@ class App extends Component {
       password: e.target.value
   })
 
+  handleLogout = (e) => {
+    e.preventDefault;
+    var token = window.localStorage.getItem('HASURA_AUTH_TOKEN');
+    alert('clicked');
+    axios.post(`https://auth.deterioration37.hasura-app.io/v1/user/logout`, {
+          headers: { Authorization: `Bearer ${token}` },
+          body: ''
+    }).then(data => {
+      console.log(data);
+      window.localStorage.removeItem(['HASURA_AUTH_TOKEN', 'currentUser']);
+    }).catch(error => {
+      console.log('Request Failed:' + error);
+    })
+  }
+
   handleSubmit = e => {
       alert('prevented');
       e.preventDefault();
@@ -70,9 +85,6 @@ class App extends Component {
        authToken = data.data.auth_token;
        window.localStorage.setItem('HASURA_AUTH_TOKEN', authToken);
        window.localStorage.setItem('currentUser', JSON.stringify(data.data));
-       // let curUser = window.localStorage.getItem('currentUser');
-       //
-       // console.log(JSON.parse(curUser));
      }).catch(function (error) {
         console.log(error);
      })
@@ -80,7 +92,7 @@ class App extends Component {
 
 render(){
 
-  let user = window.localStorage.getItem('currentUser');
+  let user = window.localStorage.getItem('currentUser') || false;
 
   return(
       <BrowserRouter>
@@ -107,7 +119,7 @@ render(){
               <Route component={ NotFound }/>
             </Switch>
           </div>
-          <Menu />
+          <Menu userLogOut={this.handleLogout}/>
         </div>
       </BrowserRouter>
     )
