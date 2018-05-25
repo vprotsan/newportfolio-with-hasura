@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import StackGrid from "react-stack-grid";
+
 import '../css/portfolioItem.css';
 
 
@@ -104,7 +106,7 @@ class PortfolioItem extends Component {
     let portfolioItems, hasLinks;
     if (this.props.portfolioItems.length > 0) {
       portfolioItems = this.props.portfolioItems.map((e, index) =>
-                  <div key={e.id} onClick={this.val.bind(this, index)} className="media-box media-box-loaded portfolio-item">
+                  <div key={e.id} onClick={this.val.bind(this, index)} className="portfolio-item">
                       <div className="card-wrapper">
                         <div className="fakeoverlay"></div>
                           <div className="card-img">
@@ -136,7 +138,9 @@ class PortfolioItem extends Component {
     console.log(this.state.modalLivePreview1);
     console.log(this.state.modalLivePreview2);
 
-    return( <div className="row row-content justify-content-center p-items">
+    return(
+        <StackGrid columnWidth={300}>
+
               {portfolioItems}
               <Modal
                     isOpen={this.state.modalIsOpen}
@@ -167,7 +171,7 @@ class PortfolioItem extends Component {
                       </div>
                     </div>
               </Modal>
-            </div> );
+            </StackGrid> );
 
   }
 
