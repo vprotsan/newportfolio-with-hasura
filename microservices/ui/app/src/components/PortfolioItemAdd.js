@@ -14,11 +14,12 @@ class PortfolioItemAdd extends Component {
               content: '',
               githubLink: '',
               livePreview: '',
-              livePreview2: ''
+              livePreview2: '',
+              itemStatus: false
           }
-          this.handleThumbnail = this.handleThumbnail.bind(this);
+          // this.handleThumbnail = this.handleThumbnail.bind(this);
           this.handleChosenCategory = this.handleChosenCategory.bind(this);
-          this.uploadSuccess = this.uploadSuccess.bind(this);
+          // this.uploadSuccess = this.uploadSuccess.bind(this);
           this.handleTitle = this.handleTitle.bind(this);
           this.handleContent = this.handleContent.bind(this);
           this.handleGithubLink = this.handleGithubLink.bind(this);
@@ -32,27 +33,36 @@ class PortfolioItemAdd extends Component {
          });
      }
 
-     //file upload
-     uploadSuccess({ data }) {
-       this.setState({thumb: data.file_id });
-    }
-
-     handleThumbnail(){
-        const file = this.fileInput.files[0];
-        var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
-        console.log(authToken);
-        let data = {
-            headers: {
-                "Content-Type": "image/png",
-                "Authorization" : `Bearer ${authToken}`,
-            },
-        	body: file
-        }
-        const fileUploadUrl = `https://filestore.deterioration37.hasura-app.io/v1/file`;
-        axios.post(fileUploadUrl, data)
-          .then(response => console.log(response))
-          .catch(error => console.log(error));
+     handleManualFileInput(event){
+         this.setState({thumb: event.target.value}, function(){
+             console.log(this.state.thumb);
+         });
      }
+
+     //file upload
+    //  uploadSuccess({ data }) {
+    //    this.setState({thumb: data.file_id });
+    // }
+
+     // handleThumbnail(){
+     //    const file = this.fileInput.files[0];
+     //    var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
+     //    console.log(authToken);
+     //    let data = {
+     //        headers: {
+     //            "X-Hasura-Role": "user",
+     //            "content-type":	"application/json; charset=utf-8",
+     //            "Authorization" : "Bearer " + authToken,
+     //        },
+     //    	body: 'hey'
+     //    }
+     //
+     //    console.log(data);
+     //    const fileUploadUrl = `https://filestore.deterioration37.hasura-app.io/v1/file`;
+     //    axios.post(fileUploadUrl, data)
+     //      .then(response => console.log(response))
+     //      .catch(error => console.log(error));
+     // }
 
      handleTitle(event){
          this.setState({title: event.target.value});
@@ -81,9 +91,6 @@ class PortfolioItemAdd extends Component {
 
      createNewPortfolioItem = (event) => {
          event.preventDefault();
-         console.log(event);
-
-         // var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
 
          var articleURL = "https://data.deterioration37.hasura-app.io/v1/query";
          var newArticle = {
@@ -110,12 +117,15 @@ class PortfolioItemAdd extends Component {
             }
          }
          axios.post(articleURL, newArticle)
-             .then(response => console.log(response))
+             .then(response => {
+                 this.setState({
+                     itemStatus: true
+                 })
+             })
              .catch(error => console.log(error));
      }
 
      componentDidMount(){
-
          var authToken = window.localStorage.getItem('HASURA_AUTH_TOKEN');
          var data = {
              headers: {
@@ -123,7 +133,6 @@ class PortfolioItemAdd extends Component {
                "Content-Type": "application/json"
          	},
          }
-
 
          var self = this;
          const EndPoint = `https://data.deterioration37.hasura-app.io/v1/query`;
@@ -154,8 +163,12 @@ class PortfolioItemAdd extends Component {
 
     render(){
         const categories = this.state.allCategories.map((cat, index) => (
-            <option key={cat.id} value={cat.title}>{cat.title}</option>
+            <option key={cat.id} value={cat.id}>{cat.title}</option>
         ))
+
+        const succsessMsg = <div className="alert alert-success" role="alert" id="success_message">Success <i className="glyphicon glyphicon-thumbs-up"></i>Item has been added</div>
+        const msg = this.state.itemStatus ? succsessMsg : null
+
         return(
             <form className="well form-horizontal" onSubmit={this.createNewPortfolioItem} id="contact_form">
                 <fieldset>
@@ -171,12 +184,22 @@ class PortfolioItemAdd extends Component {
                       </div>
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
                       <label className="col-md-4 control-label">Preview</label>
                       <div className="col-md-4 inputGroupContainer">
                       <div className="input-group">
                       <span className="input-group-addon"><i className="glyphicon glyphicon-picture"></i></span>
                         <input type="file" ref={ref => this.fileInput = ref} onChange= {this.handleThumbnail}/>
+                        </div>
+                      </div>
+                    </div> */}
+
+                    <div className="form-group">
+                      <label className="col-md-4 control-label">Preview</label>
+                      <div className="col-md-4 inputGroupContainer">
+                      <div className="input-group">
+                      <span className="input-group-addon"><i className="glyphicon glyphicon-picture"></i></span>
+                        <input onChange={this.handleManualFileInput} name="file_name" placeholder="File_id" className="form-control"  type="text" />
                         </div>
                       </div>
                     </div>
@@ -234,13 +257,12 @@ class PortfolioItemAdd extends Component {
                       </div>
                     </div>
 
-                    <div className="alert alert-success" role="alert" id="success_message">Success <i className="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
-
                     <div className="form-group">
                       <label className="col-md-4 control-label"></label>
                       <div className="col-md-4">
                         <button type="submit" className="btn btn-warning" >Send <span className="glyphicon glyphicon-send"></span></button>
                       </div>
+                      {msg}
                     </div>
                 </fieldset>
             </form>
