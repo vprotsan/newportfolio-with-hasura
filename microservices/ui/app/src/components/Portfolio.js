@@ -133,7 +133,9 @@ class Portfolio extends Component {
         				/>
             </div>
           </div>
-          <PortfolioItem portfolioItems={pList}/>
+          <div id="grid">
+              <PortfolioItem portfolioItems={pList}/>
+          </div>
         </div>
 
       </section>
