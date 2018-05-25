@@ -28,7 +28,10 @@ class PortfolioItem extends Component {
         modalIsOpen: false,
         modalTitle: '',
         modalImg: '',
-        modalContent: ''
+        modalContent: '',
+        modalGithubLink: '',
+        modalLivePreview1: '',
+        modalLivePreview2: ''
       }
       this.closeModal = this.closeModal.bind(this);
   }
@@ -48,7 +51,10 @@ class PortfolioItem extends Component {
       modalIsOpen: false,
       modalTitle: '',
       modalImg: '',
-      modalContent: ''
+      modalContent: '',
+      modalGithubLink: '',
+      modalLivePreview1: '',
+      modalLivePreview2: ''
     });
   }
 
@@ -56,18 +62,22 @@ class PortfolioItem extends Component {
   val(index){
     let currItem = this.props.portfolioItems[index];
 
-    console.log(currItem.title);
+    console.log(currItem);
     this.setState({
       modalIsOpen: true,
       modalTitle: currItem.title,
       modalImg: currItem.file_id,
-      modalContent: currItem.content
+      modalContent: currItem.content,
+      modalGithubLink: currItem.github_link,
+      modalLivePreview1: currItem.website_link,
+      modalLivePreview2: currItem.live_preview_link,
+
     })
   }
   //end modal content
 
   render(){
-    let portfolioItems;
+    let portfolioItems, hasLinks;
     if (this.props.portfolioItems.length > 0) {
       portfolioItems = this.props.portfolioItems.map((e, index) =>
                   <div key={e.id} onClick={this.val.bind(this, index)} className="card p-3 col-12 col-md-4 col-lg-3 portfolio-item">
@@ -80,13 +90,22 @@ class PortfolioItem extends Component {
                               <h4 className="card-title mbr-fonts-style mbr-bold display-7 title">{e.title}</h4>
                               <p>{e.content}</p>
                           </div>
-                          {/* <div className="mbr-section-btn"><a href="articles.html" className="btn btn-warning display-4">Details</a></div> */}
                       </div>
                   </div>
                 )
     } else {
       portfolioItems = 'No items';
     }
+
+    if(this.state.modalGithubLink !== '' ||
+       this.state.modalLivePreview1 !== '' ||
+       this.state.modalLivePreview2 !== '') {
+          hasLinks = <h3 className="my-3">Project Details</h3>;
+    }
+
+    console.log(this.state.modalGithubLink);
+    console.log(this.state.modalLivePreview1);
+    console.log(this.state.modalLivePreview2);
 
     return( <div className="row row-content justify-content-center p-items">
               {portfolioItems}
@@ -109,10 +128,11 @@ class PortfolioItem extends Component {
                         <div className="col-md-4">
                           <h3 className="my-3">{this.state.modalTitle}</h3>
                           <p>{this.state.modalContent}</p>
-                          <h3 className="my-3">Project Details</h3>
+                          {hasLinks}
                           <ul>
-                            <li><Link to="/projects/amex/index.html" target="_self">on GitHub</Link></li>
-                            <li><Link to="#" target="_self">Live preview</Link></li>
+                            {(this.state.modalGithubLink !== '' && this.state.modalGithubLink !== null) ? <li><a href={this.state.modalGithubLink} target="_blank">on GitHub</a></li> : null}
+                            {this.state.modalLivePreview1 !== '' ? <li><a href={this.state.modalLivePreview1} target="_blank">Live preview</a></li> : null }
+                            {this.state.modalLivePreview2 !== '' ? <li><a href={this.state.modalLivePreview2} target="_blank">Live preview</a></li> : null }
                           </ul>
                         </div>
                       </div>

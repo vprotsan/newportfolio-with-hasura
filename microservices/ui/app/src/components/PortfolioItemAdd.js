@@ -19,6 +19,7 @@ class PortfolioItemAdd extends Component {
           }
           // this.handleThumbnail = this.handleThumbnail.bind(this);
           this.handleChosenCategory = this.handleChosenCategory.bind(this);
+          this.handleManualFileInput = this.handleManualFileInput.bind(this);
           // this.uploadSuccess = this.uploadSuccess.bind(this);
           this.handleTitle = this.handleTitle.bind(this);
           this.handleContent = this.handleContent.bind(this);
@@ -110,7 +111,7 @@ class PortfolioItemAdd extends Component {
                         "title": this.state.title,
                         "category_id": this.state.chosenCat,
                         "content": this.state.content,
-                        "file_id": "121231231231",
+                        "file_id": this.state.thumb,
                         "author_id": 1
                     }
                 ]
@@ -222,7 +223,7 @@ class PortfolioItemAdd extends Component {
                         <div className="col-md-4 inputGroupContainer">
                         <div className="input-group">
                             <span className="input-group-addon"><i className="glyphicon glyphicon-pencil"></i></span>
-                            <textarea onChange={this.handleContent} className="form-control" name="comment" placeholder="Project Description"></textarea>
+                            <textarea onChange={this.handleContent} className="form-control" rows="5" name="comment" placeholder="Project Description"></textarea>
                       </div>
                       </div>
                     </div>

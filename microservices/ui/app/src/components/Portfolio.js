@@ -79,7 +79,10 @@ class Portfolio extends Component {
                  "content",
                  "id",
                  "category_id",
-                 "file_id"
+                 "file_id",
+                 "github_link",
+                 "website_link",
+                 "live_preview_link"
              ]
            }
        }).then((data) => {

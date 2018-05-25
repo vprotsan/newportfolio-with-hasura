@@ -13,7 +13,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    overflow: hidden; }
+    overflow: auto; }
     .App > .container-fluid > section {
       padding: 0 30px;
       overflow-y: scroll; }
