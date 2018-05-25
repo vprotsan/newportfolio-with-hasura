@@ -133,7 +133,7 @@ class Portfolio extends Component {
         				/>
             </div>
           </div>
-          <div id="grid">
+          <div id="grid" className="grid-container media-boxes-container">
               <PortfolioItem portfolioItems={pList}/>
           </div>
         </div>

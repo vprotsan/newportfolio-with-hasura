@@ -104,7 +104,7 @@ class PortfolioItem extends Component {
     let portfolioItems, hasLinks;
     if (this.props.portfolioItems.length > 0) {
       portfolioItems = this.props.portfolioItems.map((e, index) =>
-                  <div key={e.id} onClick={this.val.bind(this, index)} className="media-box card p-3 col-12 col-md-4 col-lg-3 portfolio-item">
+                  <div key={e.id} onClick={this.val.bind(this, index)} className="media-box media-box-loaded portfolio-item">
                       <div className="card-wrapper">
                         <div className="fakeoverlay"></div>
                           <div className="card-img">
