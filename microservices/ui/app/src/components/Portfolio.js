@@ -19,7 +19,6 @@ class Portfolio extends Component {
       }
   }
 
-  //dropdown filter
   clearValue (e) {
 		this.select.setInputValue('');
 	}
@@ -33,12 +32,10 @@ class Portfolio extends Component {
 			selectValue: newValue
 		});
 	}
-  //end dropdown filter
 
-  componentDidMount(){
+  componentWillMount(){
       var self = this;
       const EndPoint = `https://data.deterioration37.hasura-app.io/v1/query`;
-      //get categories
       axios.post(EndPoint, {
           "headers": {
             'Content-Type': 'application/json',
@@ -94,7 +91,6 @@ class Portfolio extends Component {
           .catch(function (error) {
              console.log(error);
           })
-
   }
 
   render(){
@@ -110,7 +106,6 @@ class Portfolio extends Component {
     if (this.state.isLoading) {
          return <Loading/>
     }
-
 
     return(
       <section className="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">

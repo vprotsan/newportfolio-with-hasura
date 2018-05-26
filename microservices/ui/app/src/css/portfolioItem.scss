@@ -51,7 +51,7 @@
          right: 0;
          left: 0;
          bottom: 0;
-         background: #7dcae1ab;
+         background: #7dcae152;
          width: 100%;
          height: 100%;
          z-index:999;
@@ -59,9 +59,16 @@
          transition: all 0.2s linear;
        }
 
-
        .card-box {
          padding: 15px;
+         max-height: 300px;
+
+         p {
+            overflow: hidden;
+            width: 100%;
+            // height: 1.2em;
+            white-space: nowrap;
+         }
        }
     }
   }
@@ -80,4 +87,12 @@
 .ReactModal__Overlay {
   z-index: 9328748736;
   background-color: rgba(25, 25, 25, 0.75)!important;
+}
+
+.Select.is-clearable.is-searchable {
+  z-index: 99893764573;
+}
+
+.grid-main-container {
+  top: 23px;
 }

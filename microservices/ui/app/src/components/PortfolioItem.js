@@ -27,6 +27,7 @@ class PortfolioItem extends Component {
   constructor(props){
       super(props);
       this.state = {
+        contentLoaded: false,
         modalIsOpen: false,
         modalTitle: '',
         modalImg: '',
@@ -78,30 +79,6 @@ class PortfolioItem extends Component {
   }
   //end modal content
 
-
-  // <div class="media-box Category1 Category2">
-  //     <div class="media-box-content">
-  //         <div class="media-box-title">Dolor sit amet</div>
-  //         <div class="media-box-text">
-  //             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel ea commodi perferendis voluptates.
-  //         </div>
-  //     </div>
-  //     <div class="media-box-image">
-  //         <div data-width="590" data-height="332" data-thumbnail="https://i.vimeocdn.com/video/148596367_590x332.jpg"></div>
-  //         <div class="thumbnail-overlay overlay-always-visible iframe-on-grid" data-type="iframe" data-src="http://vimeo.com/22884674">
-  //           <span class="fa fa-play media-box-play-button"></span>
-  //         </div>
-  //     </div>
-  //     <div class="media-box-footer">
-  //       <div class="media-box-social-buttons">
-  //         <a href=""><i class="fa fa-facebook"></i></a>
-  //         <a href=""><i class="fa fa-twitter"></i></a>
-  //         <a href=""><i class="fa fa-google-plus"></i></a>
-  //         <a href=""><i class="fa fa-pinterest"></i></a>
-  //       </div>
-  //     </div>
-  // </div>
-
   render(){
     let portfolioItems, hasLinks;
     if (this.props.portfolioItems.length > 0) {
@@ -134,13 +111,14 @@ class PortfolioItem extends Component {
           hasLinks = <h3 className="my-3">Project Details</h3>;
     }
 
-    console.log(this.state.modalGithubLink);
-    console.log(this.state.modalLivePreview1);
-    console.log(this.state.modalLivePreview2);
-
     return(
-        <StackGrid columnWidth={300}>
-
+        <StackGrid
+                    columnWidth={"25%"}
+                    className="grid-main-container"
+                    gutterWidth={15}
+                    gutterHeight={15}
+                    monitorImagesLoaded={true}
+                    >
               {portfolioItems}
               <Modal
                     isOpen={this.state.modalIsOpen}
@@ -149,7 +127,6 @@ class PortfolioItem extends Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                     >
-
                     <div className="modal-body">
                       <div className="row">
                         <button className="close-modal" onClick={this.closeModal}><span className="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
@@ -172,9 +149,7 @@ class PortfolioItem extends Component {
                     </div>
               </Modal>
             </StackGrid> );
-
   }
-
 }
 
 export default PortfolioItem;
