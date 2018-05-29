@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import StackGrid from "react-stack-grid";
+import PropTypes from 'prop-types';
 
 import '../css/portfolioItem.css';
 
@@ -42,11 +43,6 @@ class PortfolioItem extends Component {
   //modal
   openModal(){
     this.setState({ modalIsOpen: true });
-  }
-
-  afterOpenModal(){
-    // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
   }
 
   closeModal(){
@@ -150,6 +146,10 @@ class PortfolioItem extends Component {
               </Modal>
             </StackGrid> );
   }
+}
+
+PortfolioItem.propTypes = {
+     portfolioItems: PropTypes.func.isRequired,
 }
 
 export default PortfolioItem;

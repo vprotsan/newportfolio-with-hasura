@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Menu = (props) => {
 
@@ -51,5 +52,9 @@ const Menu = (props) => {
     );
 
 };
+
+Menu.propTypes = {
+     userLogOut: PropTypes.func.isRequired,
+}
 
 export default Menu;
