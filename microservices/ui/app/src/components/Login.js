@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import '../css/login.css';
 
@@ -23,5 +24,11 @@ const Login = props => (
       </div>
 
 )
+
+Login.propTypes = {
+     handleSubmit: PropTypes.func.isRequired,
+     handleLoginChange: PropTypes.func.isRequired,
+     handlePasswordChange: PropTypes.func.isRequired
+}
 
 export default Login;
