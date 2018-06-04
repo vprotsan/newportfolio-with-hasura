@@ -9,7 +9,7 @@ const Menu = (props) => {
     return(
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
           <div className="loggedInUser">{user ? JSON.parse(user).username : null }</div>
-          <a className="navbar-brand js-scroll-trigger" href="#page-top">
+          <a className="navbar-brand js-scroll-trigger" href="/">
             <span className="d-block d-lg-none">V.Protsan</span>
           </a>
           <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
