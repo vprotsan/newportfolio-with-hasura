@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import { Nav, NavItem } from 'react-bootstrap';
 
 import 'react-select/dist/react-select.css';
 import PortfolioItem from './PortfolioItem';
 import Loading from './Loading';
+import '../css/portfolio.css';
 
 
 class Portfolio extends Component {
@@ -16,29 +18,15 @@ class Portfolio extends Component {
           portfolioItems: [],
           selectValue: null,
           isLoading: true,
-          isActive: false
+          isActive: false,
       }
-      this.toggleClass= this.toggleClass.bind(this);
   }
-
-  toggleClass() {
-      const currentState = this.state.isActive;
-      this.setState({ isActive: !currentState });
-  };
-
-  clearValue (e) {
-		this.select.setInputValue('');
-	}
-
-  focusStateSelect = props => {
-		this.select.focus();
-	}
 
   updateValue = (index) => {
     let currCat = this.state.categories[index];
 
 		this.setState({
-			selectValue: currCat.id
+			selectValue: currCat.id,
 		}, function(){
       console.log(this.state.selectValue);
     });
@@ -94,7 +82,6 @@ class Portfolio extends Component {
              ]
            }
        }).then((data) => {
-            // console.log(data.data);
             self.setState({
                portfolioItems: data.data,
              })
@@ -121,26 +108,24 @@ class Portfolio extends Component {
     }
 
     let menuFilterItems = this.state.categories.map((item, index) => (
-      <li key={index} role="presentation" className={this.state.isActive ? 'active' : ''}>
-        <a onClick={this.updateValue.bind(this, index)} href="#">{item.title}</a>
-      </li>
+      <NavItem eventKey={index} key={item.id} href="#">
+          <p className='' onClick={this.updateValue.bind(this, index)}>{item.title}</p>
+      </NavItem>
     ))
 
     return(
       <section className="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div className="my-auto">
           <h2 className="mb-5">Projects</h2>
-
           <div className="row">
             <div className="btn-group col-6 col-xs-12 col-md-10 col-lg-10 col-lg-offset-2">
-                <ul className="nav nav-pills">
-                  {menuFilterItems}
-                </ul>
+                  <Nav bsStyle="pills" onSelect={k => this.updateValue(k)}>
+                    {menuFilterItems}
+                  </Nav>
             </div>
           </div>
               <PortfolioItem portfolioItems={pList}/>
         </div>
-
       </section>
     )
   }
