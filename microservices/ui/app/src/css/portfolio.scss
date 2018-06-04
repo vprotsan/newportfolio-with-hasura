@@ -1,5 +1,14 @@
-.nav.nav-pills > li > a.btn-default {
+.nav.nav-pills > li > a {
   background: #ffffff;
+
+  &:hover, &:active {
+    background: #b3edff;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .nav.nav-pills {
