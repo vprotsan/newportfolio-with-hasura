@@ -9,18 +9,14 @@ const About = () => (
       <h1 className="mb-0">Valeriya
         <span className="text-primary">Protsan</span>
       </h1>
-      <p className="mb-5">I am a self taught front end developer and just went through 10 week intensive bootcamp at the Wyncode Academy<br />
-         in Miami to deepen my knowledge of back end development.</p>
-        <p>
-        At the end of a course, me and my teammate won a final project competition.</p>
-        <p>
-        I have full confidence I can bring value to your company, adapt to a new environment,<br />
-        learn new skill if needed and deliver the result!</p>
-        <p>
-I am detail-oriented, organized and dependable developer<br />
-with experience in designing and building applications.</p>
-<p>
-I like new projects and challenges they bring!</p>
+      <p className="mb-5">
+        Hi
+        <p>I’m Valeriya Prostan, and I’m a front-end web developer and a recent award winning graduate of Wyncode Academy, Miami, Florida.  </p>
+        <p>I bring value and results to companies and organizations based on understanding your business needs and combining my expertise for building and designing creative and easy to use applications.</p>
+        <p>I’m passionate about adopting ideas and bringing them to life through technology.</p>
+        <p>Things I do for fun: codewars and handstands  🙌</p>
+      </p>
+
     </div>
   </section>
 )
