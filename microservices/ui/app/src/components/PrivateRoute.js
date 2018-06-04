@@ -18,11 +18,11 @@ function PrivateRoute ({component: Component, authed, ...rest}) {
   )
 }
 
-PrivateRoute.propTypes = {
-     props: PropTypes.oneOfType([
-                PropTypes.arrayOf(PropTypes.node),
-                PropTypes.node
-            ]).isRequired,
-}
+// PrivateRoute.propTypes = {
+//      props: PropTypes.oneOfType([
+//                 PropTypes.arrayOf(PropTypes.node),
+//                 PropTypes.node
+//             ]).isRequired,
+// }
 
 export default PrivateRoute;

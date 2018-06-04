@@ -99,7 +99,12 @@ class Portfolio extends Component {
     var pList;
     if (this.state.selectValue){
       pList = this.state.portfolioItems.filter( item => item.category_id === this.state.selectValue );
-    } else {
+    } else if(this.state.selectValue == null){
+      pList = this.state.portfolioItems.filter( item => {
+                  return item.category_id !== 4
+              });
+    }
+    else {
       pList = this.state.portfolioItems;
     }
 

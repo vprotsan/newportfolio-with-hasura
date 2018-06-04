@@ -1,4 +1,9 @@
-.thumb {
+.col-md-12 .thumb {
+  display: block;
+  margin: 0 auto;
+  width: auto; }
+
+.col-md-8 .thumb {
   width: 100%; }
 
 .close-modal {
@@ -24,9 +29,12 @@
     margin-top: 1rem; }
   #experience .portfolio-item .card-wrapper {
     position: relative;
-    background: #ffffff; }
-    #experience .portfolio-item .card-wrapper:hover .fakeoverlay {
-      opacity: 1; }
+    background: #ffffff;
+    box-shadow: 0px 1px 3px #ececec; }
+    #experience .portfolio-item .card-wrapper:hover {
+      cursor: pointer; }
+      #experience .portfolio-item .card-wrapper:hover .fakeoverlay {
+        opacity: 1; }
     #experience .portfolio-item .card-wrapper .fakeoverlay {
       position: absolute;
       top: 0;
@@ -42,10 +50,16 @@
     #experience .portfolio-item .card-wrapper .card-box {
       padding: 15px;
       max-height: 300px; }
-      #experience .portfolio-item .card-wrapper .card-box p {
+      #experience .portfolio-item .card-wrapper .card-box h4 {
+        line-height: 1.4; }
+      #experience .portfolio-item .card-wrapper .card-box p.descr {
         overflow: hidden;
-        width: 100%;
-        white-space: nowrap; }
+        position: relative;
+        line-height: 1.4em;
+        max-height: 3.8em;
+        text-align: left;
+        margin-right: -1em;
+        padding-right: 2em; }
   #experience img {
     width: 100%; }
   #experience .btn-warning {

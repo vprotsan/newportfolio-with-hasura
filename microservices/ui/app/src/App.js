@@ -7,8 +7,8 @@ import {
   Switch
 } from 'react-router-dom';
 
-import { AuthConsumer } from 'react-check-auth';
-import { AuthProvider } from "react-check-auth";
+// import { AuthConsumer } from 'react-check-auth';
+// import { AuthProvider } from "react-check-auth";
 
 import Menu from './components/Menu';
 import Homepage from './components/Homepage';
@@ -53,11 +53,14 @@ class App extends Component {
     var token = window.localStorage.getItem('HASURA_AUTH_TOKEN');
     alert('clicked');
     axios.post(`https://auth.deterioration37.hasura-app.io/v1/user/logout`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": 'Bearer ' + window.localStorage.getItem('HASURA_AUTH_TOKEN') },
           body: ''
     }).then(data => {
       console.log(data);
-      window.localStorage.removeItem(['HASURA_AUTH_TOKEN', 'currentUser']);
+      window.localStorage.removeItem('HASURA_AUTH_TOKEN');
+      window.localStorage.removeItem('currentUser');
     }).catch(error => {
       console.log('Request Failed:' + error);
     })

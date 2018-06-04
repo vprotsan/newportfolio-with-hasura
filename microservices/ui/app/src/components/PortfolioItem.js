@@ -16,7 +16,8 @@ const customStyles = {
     bottom                : 'auto',
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
-    width                 : '50%'
+    width                 : '50%',
+    maxHeight             : '100%'
   }
 };
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
@@ -89,7 +90,7 @@ class PortfolioItem extends Component {
                               ?
                               <div className="card-box">
                                   <h4 className="card-title mbr-fonts-style mbr-bold display-7 title">{e.title}</h4>
-                                  <p>{e.content}</p>
+                                  <p className="descr">{e.content}<span className="turnicate"> ...</span></p>
                               </div>
                               :
                               null
@@ -149,7 +150,7 @@ class PortfolioItem extends Component {
 }
 
 PortfolioItem.propTypes = {
-     portfolioItems: PropTypes.func.isRequired,
+     portfolioItems: PropTypes.array.isRequired,
 }
 
 export default PortfolioItem;
