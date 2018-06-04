@@ -15,9 +15,16 @@ class Portfolio extends Component {
           categories: [],
           portfolioItems: [],
           selectValue: null,
-          isLoading: true
+          isLoading: true,
+          isActive: false
       }
+      this.toggleClass= this.toggleClass.bind(this);
   }
+
+  toggleClass() {
+      const currentState = this.state.isActive;
+      this.setState({ isActive: !currentState });
+  };
 
   clearValue (e) {
 		this.select.setInputValue('');
@@ -27,9 +34,10 @@ class Portfolio extends Component {
 		this.select.focus();
 	}
 
-  updateValue = newValue => {
+  updateValue = index => {
+    console.log(index);
 		this.setState({
-			selectValue: newValue
+			selectValue: index
 		});
 	}
 
@@ -112,6 +120,12 @@ class Portfolio extends Component {
          return <Loading/>
     }
 
+    let menuFilterItems = this.state.categories.map((item, index) => (
+      <li key={item.id} role="presentation" className={this.state.isActive ? 'active' : ''}>
+        <a data-id={item.id} onClick={this.updateValue.bind(this, index)} href="#">{item.title}</a>
+      </li>
+    ))
+
     return(
       <section className="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div className="my-auto">
@@ -119,18 +133,9 @@ class Portfolio extends Component {
 
           <div className="row">
             <div className="btn-group col-6 col-md-2 col-lg-4 col-lg-offset-8">
-                <Select
-        					id="state-select"
-        					ref={(ref) => { this.select = ref; }}
-        					onBlurResetsInput={false}
-        					onSelectResetsInput={false}
-        					autoFocus
-        					options={cat}
-        					simpleValue
-        					name="selected-state"
-        					value={this.state.selectValue}
-        					onChange={this.updateValue}
-        				/>
+                <ul className="nav nav-pills">
+                  {menuFilterItems}
+                </ul>
             </div>
           </div>
               <PortfolioItem portfolioItems={pList}/>
