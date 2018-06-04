@@ -34,11 +34,14 @@ class Portfolio extends Component {
 		this.select.focus();
 	}
 
-  updateValue = index => {
-    console.log(index);
+  updateValue = (index) => {
+    let currCat = this.state.categories[index];
+
 		this.setState({
-			selectValue: index
-		});
+			selectValue: currCat.id
+		}, function(){
+      console.log(this.state.selectValue);
+    });
 	}
 
   componentWillMount(){
@@ -59,7 +62,7 @@ class Portfolio extends Component {
             ]
           }
       }).then((data) => {
-           console.log('returned data:' + data.data);
+           console.log(data.data);
            self.setState({
               categories: data.data,
               isLoading: false
@@ -91,7 +94,7 @@ class Portfolio extends Component {
              ]
            }
        }).then((data) => {
-            console.log(data.data);
+            // console.log(data.data);
             self.setState({
                portfolioItems: data.data,
              })
@@ -108,11 +111,8 @@ class Portfolio extends Component {
     if (this.state.selectValue){
       pList = this.state.portfolioItems.filter( item => item.category_id === this.state.selectValue );
     } else if(this.state.selectValue == null){
-      pList = this.state.portfolioItems.filter( item => {
-                  return item.category_id !== 4
-              });
-    }
-    else {
+      pList = this.state.portfolioItems.filter( item => item.category_id !== 4);
+    } else {
       pList = this.state.portfolioItems;
     }
 
@@ -121,8 +121,8 @@ class Portfolio extends Component {
     }
 
     let menuFilterItems = this.state.categories.map((item, index) => (
-      <li key={item.id} role="presentation" className={this.state.isActive ? 'active' : ''}>
-        <a data-id={item.id} onClick={this.updateValue.bind(this, index)} href="#">{item.title}</a>
+      <li key={index} role="presentation" className={this.state.isActive ? 'active' : ''}>
+        <a onClick={this.updateValue.bind(this, index)} href="#">{item.title}</a>
       </li>
     ))
 
@@ -132,7 +132,7 @@ class Portfolio extends Component {
           <h2 className="mb-5">Projects</h2>
 
           <div className="row">
-            <div className="btn-group col-6 col-md-2 col-lg-4 col-lg-offset-8">
+            <div className="btn-group col-6 col-xs-12 col-md-10 col-lg-10 col-lg-offset-2">
                 <ul className="nav nav-pills">
                   {menuFilterItems}
                 </ul>
